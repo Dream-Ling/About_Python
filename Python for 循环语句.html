@@ -1,0 +1,75 @@
+<html>
+<head>
+  <title>Python for 循环语句</title>
+  <basefont face="微软雅黑" size="2" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="exporter-version" content="YXBJ Windows/600753 (zh-CN, DDL); Windows/6.1.1 (Win64);"/>
+  <style>
+    body, td {
+      font-family: 微软雅黑;
+      font-size: 10pt;
+    }
+  </style>
+</head>
+<body>
+<a name="4351"/>
+<h1>Python for 循环语句</h1>
+<div>
+<table bgcolor="#D4DDE5" border="0">
+<tr><td><b>作者：</b></td><td><i>凌小康</i></td></tr>
+</table>
+</div>
+<br/>
+
+<div>
+<span><div><h1>Python <span>for 循环语句</span></h1><p>Python for循环可以遍历任何序列的项目，如一个列表或者一个字符串。</p><p><strong>语法：</strong></p><p>for循环的语法格式如下：</p><pre><span>for</span><span> iterating_var </span><span>in</span><span> sequence</span><span>:</span><span>
+   statements</span><span>(</span><span>s</span><span>)</span></pre><p><strong>流程图：</strong></p><img src="Python for 循环语句_files/Image.jpg" type="image/jpeg" data-filename="Image.jpg" alt="python_for_loop" height="351" width="388"/><p><strong>实例：</strong></p><div><h2>实例</h2><div><div><span>#!/usr/bin/python</span><span>
+</span><span># -*- coding: UTF-8 -*-</span><span>
+ 
+</span><span>for</span><span> </span><span>letter</span><span> </span><span>in</span><span> </span><span>'</span><span>Python</span><span>'</span><span>:     </span><span># 第一个实例</span><span>
+   </span><span>print</span><span> </span><span>'</span><span>当前字母 :</span><span>'</span><span>, </span><span>letter</span><span>
+ 
+</span><span>fruits</span><span> = </span><span>[</span><span>'</span><span>banana</span><span>'</span><span>, </span><span>'</span><span>apple</span><span>'</span><span>,  </span><span>'</span><span>mango</span><span>'</span><span>]</span><span>
+</span><span>for</span><span> </span><span>fruit</span><span> </span><span>in</span><span> </span><span>fruits</span><span>:        </span><span># 第二个实例</span><span>
+   </span><span>print</span><span> </span><span>'</span><span>当前水果 :</span><span>'</span><span>, </span><span>fruit</span><span>
+ 
+</span><span>print</span><span> </span><span>&quot;</span><span>Good bye!</span><span>&quot;</span></div></div><br clear="none"/><a href="http://www.runoob.com/try/runcode.php?filename=for_demo1&amp;type=python" shape="rect" target="_blank">尝试一下 »</a></div><p>以上实例输出结果:</p><pre><span>当前字母</span><span> </span><span>:</span><span> P
+</span><span>当前字母</span><span> </span><span>:</span><span> y
+</span><span>当前字母</span><span> </span><span>:</span><span> t
+</span><span>当前字母</span><span> </span><span>:</span><span> h
+</span><span>当前字母</span><span> </span><span>:</span><span> o
+</span><span>当前字母</span><span> </span><span>:</span><span> n
+</span><span>当前水果</span><span> </span><span>:</span><span> banana
+</span><span>当前水果</span><span> </span><span>:</span><span> apple
+</span><span>当前水果</span><span> </span><span>:</span><span> mango
+</span><span>Good</span><span> bye</span><span>!</span></pre><br clear="none"/><hr/><h2>通过序列索引迭代</h2><p>另外一种执行循环的遍历方式是通过索引，如下实例：</p><div><h2>实例</h2><div><div><span>#!/usr/bin/python</span><span>
+</span><span># -*- coding: UTF-8 -*-</span><span>
+ 
+</span><span>fruits</span><span> = </span><span>[</span><span>'</span><span>banana</span><span>'</span><span>, </span><span>'</span><span>apple</span><span>'</span><span>,  </span><span>'</span><span>mango</span><span>'</span><span>]</span><span>
+</span><span>for</span><span> </span><span>index</span><span> </span><span>in</span><span> </span><span>range</span><span>(</span><span>len</span><span>(</span><span>fruits</span><span>)</span><span>)</span><span>:
+   </span><span>print</span><span> </span><span>'</span><span>当前水果 :</span><span>'</span><span>, </span><span>fruits</span><span>[</span><span>index</span><span>]</span><span>
+ 
+</span><span>print</span><span> </span><span>&quot;</span><span>Good bye!</span><span>&quot;</span></div></div></div><p>以上实例输出结果：</p><pre><span>当前水果</span><span> </span><span>:</span><span> banana
+</span><span>当前水果</span><span> </span><span>:</span><span> apple
+</span><span>当前水果</span><span> </span><span>:</span><span> mango
+</span><span>Good</span><span> bye</span><span>!</span></pre><p>以上实例我们使用了内置函数 len() 和 range(),函数 len() 返回列表的长度，即元素的个数。 range返回一个序列的数。</p><br clear="none"/><hr/><h2>循环使用 else 语句</h2><p>在 python 中，for … else 表示这样的意思，for 中的语句和普通的没有区别，else 中的语句会在循环正常执行完（即 for 不是通过 break 跳出而中断的）的情况下执行，while … else 也是一样。</p><div><h2>实例</h2><div><div><span>#!/usr/bin/python</span><span>
+</span><span># -*- coding: UTF-8 -*-</span><span>
+ 
+</span><span>for</span><span> </span><span>num</span><span> </span><span>in</span><span> </span><span>range</span><span>(</span><span>10</span><span>,</span><span>20</span><span>)</span><span>:  </span><span># 迭代 10 到 20 之间的数字</span><span>
+   </span><span>for</span><span> </span><span>i</span><span> </span><span>in</span><span> </span><span>range</span><span>(</span><span>2</span><span>,</span><span>num</span><span>)</span><span>: </span><span># 根据因子迭代</span><span>
+      </span><span>if</span><span> </span><span>num</span><span>%</span><span>i</span><span> == </span><span>0</span><span>:      </span><span># 确定第一个因子</span><span>
+         </span><span>j</span><span>=</span><span>num</span><span>/</span><span>i</span><span>          </span><span># 计算第二个因子</span><span>
+         </span><span>print</span><span> </span><span>'</span><span>%d 等于 %d * %d</span><span>'</span><span> % </span><span>(</span><span>num</span><span>,</span><span>i</span><span>,</span><span>j</span><span>)</span><span>
+         </span><span>break</span><span>            </span><span># 跳出当前循环</span><span>
+   </span><span>else</span><span>:                  </span><span># 循环的 else 部分</span><span>
+      </span><span>print</span><span> </span><span>num</span><span>, </span><span>'</span><span>是一个质数</span><span>'</span></div></div><br clear="none"/><a href="http://www.runoob.com/try/runcode.php?filename=for_demo2&amp;type=python" shape="rect" target="_blank">尝试一下 »</a></div><p>以上实例输出结果：</p><pre><span>10</span><span> </span><span>等于</span><span> </span><span>2</span><span> </span><span>*</span><span> </span><span>5</span><span>
+</span><span>11</span><span> </span><span>是一个质数</span><span>
+</span><span>12</span><span> </span><span>等于</span><span> </span><span>2</span><span> </span><span>*</span><span> </span><span>6</span><span>
+</span><span>13</span><span> </span><span>是一个质数</span><span>
+</span><span>14</span><span> </span><span>等于</span><span> </span><span>2</span><span> </span><span>*</span><span> </span><span>7</span><span>
+</span><span>15</span><span> </span><span>等于</span><span> </span><span>3</span><span> </span><span>*</span><span> </span><span>5</span><span>
+</span><span>16</span><span> </span><span>等于</span><span> </span><span>2</span><span> </span><span>*</span><span> </span><span>8</span><span>
+</span><span>17</span><span> </span><span>是一个质数</span><span>
+</span><span>18</span><span> </span><span>等于</span><span> </span><span>2</span><span> </span><span>*</span><span> </span><span>9</span><span>
+</span><span>19</span><span> </span><span>是一个质数</span></pre><p>更多实例：<a href="http://www.runoob.com/w3cnote/prints-diamonds-triangles-rectangles.html" shape="rect" target="_blank">python 打印菱形、三角形、矩形</a></p><br clear="none"/></div></span>
+</div></body></html> 
