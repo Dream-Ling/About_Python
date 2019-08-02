@@ -1,0 +1,50 @@
+<html>
+<head>
+  <title>Python GUI编程(Tkinter)</title>
+  <basefont face="微软雅黑" size="2" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="exporter-version" content="YXBJ Windows/600753 (zh-CN, DDL); Windows/6.1.1 (Win64);"/>
+  <style>
+    body, td {
+      font-family: 微软雅黑;
+      font-size: 10pt;
+    }
+  </style>
+</head>
+<body>
+<a name="4302"/>
+<h1>Python GUI编程(Tkinter)</h1>
+<div>
+<table bgcolor="#D4DDE5" border="0">
+<tr><td><b>作者：</b></td><td><i>凌小康</i></td></tr>
+</table>
+</div>
+<br/>
+
+<div>
+<span><div><h1>Python GUI编程(Tkinter)</h1><p>Python 提供了多个图形开发界面的库，几个常用 Python GUI 库如下：</p><ul><li><p><strong>Tkinter：</strong> Tkinter 模块(Tk 接口)是 Python 的标准 Tk GUI 工具包的接口 .Tk 和 Tkinter 可以在大多数的 Unix 平台下使用,同样可以应用在 Windows 和 Macintosh 系统里。Tk8.0 的后续版本可以实现本地窗口风格,并良好地运行在绝大多数平台中。</p></li><li><p><strong>wxPython：</strong>wxPython 是一款开源软件，是 Python 语言的一套优秀的 GUI 图形库，允许 Python 程序员很方便的创建完整的、功能健全的 GUI 用户界面。</p></li><li><p><strong>Jython：</strong>Jython 程序可以和 Java 无缝集成。除了一些标准模块，Jython 使用 Java 的模块。Jython 几乎拥有标准的Python 中不依赖于 C 语言的全部模块。比如，Jython 的用户界面将使用 Swing，AWT或者 SWT。Jython 可以被动态或静态地编译成 Java 字节码。</p></li></ul><hr/><h2>Tkinter 编程</h2><p>Tkinter 是 Python 的标准 GUI 库。Python 使用 Tkinter 可以快速的创建 GUI 应用程序。</p><p>由于 Tkinter 是内置到 python 的安装包中、只要安装好 Python 之后就能 import Tkinter 库、而且 IDLE 也是用 Tkinter 编写而成、对于简单的图形界面 Tkinter 还是能应付自如。</p><blockquote><p><strong>注意</strong>：Python3.x 版本使用的库名为 tkinter,即首写字母 T 为小写。</p><pre><span>import</span><span> tkinter</span></pre></blockquote><p>创建一个GUI程序</p><ul><li>1、导入 Tkinter 模块</li><li>2、创建控件</li><li>3、指定这个控件的 master， 即这个控件属于哪一个</li><li>4、告诉 GM(geometry manager) 有一个控件产生了。</li></ul><div><h2>实例</h2><div><div><span>#!/usr/bin/python</span><span>
+</span><span># -*- coding: UTF-8 -*-</span><span>
+ 
+</span><span>import</span><span> </span><span>Tkinter</span><span>
+</span><span>top</span><span> = </span><span>Tkinter</span><span>.</span><span>Tk</span><span>(</span><span>)</span><span>
+</span><span># 进入消息循环</span><span>
+</span><span>top</span><span>.</span><span>mainloop</span><span>(</span><span>)</span></div></div></div><p>以上代码执行结果如下图:</p><p><img src="Python GUI编程(Tkinter)_files/Image.jpg" type="image/jpeg" data-filename="Image.jpg" alt="tkwindow"/></p><div><h2>实例</h2><div><div><span>#!/usr/bin/python</span><span>
+</span><span># -*- coding: UTF-8 -*-</span><span>
+ 
+</span><span>from</span><span> </span><span>Tkinter</span><span> </span><span>import</span><span> *           </span><span># 导入 Tkinter 库</span><span>
+</span><span>root</span><span> = </span><span>Tk</span><span>(</span><span>)</span><span>                     </span><span># 创建窗口对象的背景色</span><span>
+                                </span><span># 创建两个列表</span><span>
+</span><span>li</span><span>     = </span><span>[</span><span>'</span><span>C</span><span>'</span><span>,</span><span>'</span><span>python</span><span>'</span><span>,</span><span>'</span><span>php</span><span>'</span><span>,</span><span>'</span><span>html</span><span>'</span><span>,</span><span>'</span><span>SQL</span><span>'</span><span>,</span><span>'</span><span>java</span><span>'</span><span>]</span><span>
+</span><span>movie</span><span>  = </span><span>[</span><span>'</span><span>CSS</span><span>'</span><span>,</span><span>'</span><span>jQuery</span><span>'</span><span>,</span><span>'</span><span>Bootstrap</span><span>'</span><span>]</span><span>
+</span><span>listb</span><span>  = </span><span>Listbox</span><span>(</span><span>root</span><span>)</span><span>          </span><span>#  创建两个列表组件</span><span>
+</span><span>listb2</span><span> = </span><span>Listbox</span><span>(</span><span>root</span><span>)</span><span>
+</span><span>for</span><span> </span><span>item</span><span> </span><span>in</span><span> </span><span>li</span><span>:                 </span><span># 第一个小部件插入数据</span><span>
+    </span><span>listb</span><span>.</span><span>insert</span><span>(</span><span>0</span><span>,</span><span>item</span><span>)</span><span>
+ 
+</span><span>for</span><span> </span><span>item</span><span> </span><span>in</span><span> </span><span>movie</span><span>:              </span><span># 第二个小部件插入数据</span><span>
+    </span><span>listb2</span><span>.</span><span>insert</span><span>(</span><span>0</span><span>,</span><span>item</span><span>)</span><span>
+ 
+</span><span>listb</span><span>.</span><span>pack</span><span>(</span><span>)</span><span>                    </span><span># 将小部件放置到主窗口中</span><span>
+</span><span>listb2</span><span>.</span><span>pack</span><span>(</span><span>)</span><span>
+</span><span>root</span><span>.</span><span>mainloop</span><span>(</span><span>)</span><span>                 </span><span># 进入消息循环</span></div></div></div><p>以上代码执行结果如下图:</p><img src="Python GUI编程(Tkinter)_files/Image [1].jpg" type="image/jpeg" data-filename="Image.jpg"/><hr/><h2>Tkinter 组件</h2><p>Tkinter的提供各种控件，如按钮，标签和文本框，一个GUI应用程序中使用。这些控件通常被称为控件或者部件。</p><p>目前有15种Tkinter的部件。我们提出这些部件以及一个简短的介绍，在下面的表:</p><table><tr><th colspan="1" rowspan="1">控件</th><th colspan="1" rowspan="1">描述</th></tr><tr><td colspan="1" rowspan="1"><a href="http://www.runoob.com/python/python-tk-button.html" rel="noopener" shape="rect" target="_blank">Button</a></td><td colspan="1" rowspan="1">按钮控件；在程序中显示按钮。</td></tr><tr><td colspan="1" rowspan="1"><a href="http://www.runoob.com/python/python-tk-canvas.html" rel="noopener" shape="rect" target="_blank">Canvas</a></td><td colspan="1" rowspan="1">画布控件；显示图形元素如线条或文本</td></tr><tr><td colspan="1" rowspan="1"><a href="http://www.runoob.com/python/python-tk-checkbutton.html" rel="noopener" shape="rect" target="_blank">Checkbutton</a></td><td colspan="1" rowspan="1">多选框控件；用于在程序中提供多项选择框</td></tr><tr><td colspan="1" rowspan="1"><a href="http://www.runoob.com/python/python-tkinter-entry.html" rel="noopener" shape="rect" target="_blank">Entry</a></td><td colspan="1" rowspan="1">输入控件；用于显示简单的文本内容</td></tr><tr><td colspan="1" rowspan="1">Frame</td><td colspan="1" rowspan="1">框架控件；在屏幕上显示一个矩形区域，多用来作为容器</td></tr><tr><td colspan="1" rowspan="1">Label</td><td colspan="1" rowspan="1">标签控件；可以显示文本和位图</td></tr><tr><td colspan="1" rowspan="1">Listbox</td><td colspan="1" rowspan="1">列表框控件；在Listbox窗口小部件是用来显示一个字符串列表给用户</td></tr><tr><td colspan="1" rowspan="1">Menubutton</td><td colspan="1" rowspan="1">菜单按钮控件，由于显示菜单项。</td></tr><tr><td colspan="1" rowspan="1">Menu</td><td colspan="1" rowspan="1">菜单控件；显示菜单栏,下拉菜单和弹出菜单</td></tr><tr><td colspan="1" rowspan="1">Message</td><td colspan="1" rowspan="1">消息控件；用来显示多行文本，与label比较类似</td></tr><tr><td colspan="1" rowspan="1">Radiobutton</td><td colspan="1" rowspan="1">单选按钮控件；显示一个单选的按钮状态</td></tr><tr><td colspan="1" rowspan="1">Scale</td><td colspan="1" rowspan="1">范围控件；显示一个数值刻度，为输出限定范围的数字区间</td></tr><tr><td colspan="1" rowspan="1">Scrollbar</td><td colspan="1" rowspan="1">滚动条控件，当内容超过可视化区域时使用，如列表框。.</td></tr><tr><td colspan="1" rowspan="1">Text</td><td colspan="1" rowspan="1">文本控件；用于显示多行文本</td></tr><tr><td colspan="1" rowspan="1">Toplevel</td><td colspan="1" rowspan="1">容器控件；用来提供一个单独的对话框，和Frame比较类似</td></tr><tr><td colspan="1" rowspan="1">Spinbox</td><td colspan="1" rowspan="1">输入控件；与Entry类似，但是可以指定输入范围值</td></tr><tr><td colspan="1" rowspan="1">PanedWindow</td><td colspan="1" rowspan="1">PanedWindow是一个窗口布局管理的插件，可以包含一个或者多个子控件。</td></tr><tr><td colspan="1" rowspan="1">LabelFrame</td><td colspan="1" rowspan="1">labelframe 是一个简单的容器控件。常用与复杂的窗口布局。</td></tr><tr><td colspan="1" rowspan="1">tkMessageBox</td><td colspan="1" rowspan="1">用于显示你应用程序的消息框。</td></tr></table><hr/><h2>标准属性</h2><p>标准属性也就是所有控件的共同属性，如大小，字体和颜色等等。</p><table><tr><td colspan="1" rowspan="1">属性</td><td colspan="1" rowspan="1">描述</td></tr><tr><td colspan="1" rowspan="1">Dimension</td><td colspan="1" rowspan="1">控件大小；</td></tr><tr><td colspan="1" rowspan="1">Color</td><td colspan="1" rowspan="1">控件颜色；</td></tr><tr><td colspan="1" rowspan="1">Font</td><td colspan="1" rowspan="1">控件字体；</td></tr><tr><td colspan="1" rowspan="1">Anchor</td><td colspan="1" rowspan="1">锚点；</td></tr><tr><td colspan="1" rowspan="1">Relief</td><td colspan="1" rowspan="1">控件样式；</td></tr><tr><td colspan="1" rowspan="1">Bitmap</td><td colspan="1" rowspan="1">位图；</td></tr><tr><td colspan="1" rowspan="1">Cursor</td><td colspan="1" rowspan="1">光标；</td></tr></table><hr/><h2>几何管理</h2><p>Tkinter控件有特定的几何状态管理方法，管理整个控件区域组织，一下是Tkinter公开的几何管理类：包、网格、位置</p><table><tr><td colspan="1" rowspan="1">几何方法</td><td colspan="1" rowspan="1">描述</td></tr><tr><td colspan="1" rowspan="1">pack()</td><td colspan="1" rowspan="1">包装；</td></tr><tr><td colspan="1" rowspan="1">grid()</td><td colspan="1" rowspan="1">网格；</td></tr><tr><td colspan="1" rowspan="1">place()</td><td colspan="1" rowspan="1">位置；</td></tr></table><br clear="none"/></div></span>
+</div></body></html> 
