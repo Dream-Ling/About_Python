@@ -1,0 +1,228 @@
+<html>
+<head>
+  <title>Python SMTP发送邮件</title>
+  <basefont face="微软雅黑" size="2" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="exporter-version" content="YXBJ Windows/600753 (zh-CN, DDL); Windows/6.1.1 (Win64);"/>
+  <style>
+    body, td {
+      font-family: 微软雅黑;
+      font-size: 10pt;
+    }
+  </style>
+</head>
+<body>
+<a name="4307"/>
+<h1>Python SMTP发送邮件</h1>
+<div>
+<table bgcolor="#D4DDE5" border="0">
+<tr><td><b>作者：</b></td><td><i>凌小康</i></td></tr>
+</table>
+</div>
+<br/>
+
+<div>
+<span><div><h1>Python SMTP发送邮件</h1><p>SMTP（Simple Mail Transfer Protocol）即简单邮件传输协议,它是一组用于由源地址到目的地址传送邮件的规则，由它来控制信件的中转方式。</p><p>python的smtplib提供了一种很方便的途径发送电子邮件。它对smtp协议进行了简单的封装。</p><p>Python创建 SMTP 对象语法如下：</p><pre><span>import</span><span> smtplib
+
+smtpObj </span><span>=</span><span> smtplib</span><span>.</span><span>SMTP</span><span>(</span><span> </span><span>[</span><span>host </span><span>[,</span><span> port </span><span>[,</span><span> local_hostname</span><span>]]]</span><span> </span><span>)</span></pre><p>参数说明：</p><ul><li>host: SMTP 服务器主机。 你可以指定主机的ip地址或者域名如: runoob.com，这个是可选参数。</li><li>port: 如果你提供了 host 参数, 你需要指定 SMTP 服务使用的端口号，一般情况下 SMTP 端口号为25。</li><li>local_hostname: 如果 SMTP 在你的本机上，你只需要指定服务器地址为 localhost 即可。</li></ul><p>Python SMTP 对象使用 sendmail 方法发送邮件，语法如下：</p><pre><span>SMTP</span><span>.</span><span>sendmail</span><span>(</span><span>from_addr</span><span>,</span><span> to_addrs</span><span>,</span><span> msg</span><span>[,</span><span> mail_options</span><span>,</span><span> rcpt_options</span><span>])</span></pre><p>参数说明：</p><ul><li>from_addr: 邮件发送者地址。</li><li>to_addrs: 字符串列表，邮件发送地址。</li><li>msg: 发送消息</li></ul><p>这里要注意一下第三个参数，msg 是字符串，表示邮件。我们知道邮件一般由标题，发信人，收件人，邮件内容，附件等构成，发送邮件的时候，要注意 msg 的格式。这个格式就是 smtp 协议中定义的格式。</p><h3>实例</h3><p>以下执行实例需要你本机已安装了支持 SMTP 的服务，如：sendmail。</p><p>以下是一个使用 Python 发送邮件简单的实例：</p><div><h2>实例</h2><div><div><span>#!/usr/bin/python</span><span>
+</span><span># -*- coding: UTF-8 -*-</span><span>
+ 
+</span><span>import</span><span> </span><span>smtplib</span><span>
+</span><span>from</span><span> </span><span>email</span><span>.</span><span>mime</span><span>.</span><span>text</span><span> </span><span>import</span><span> </span><span>MIMEText</span><span>
+</span><span>from</span><span> </span><span>email</span><span>.</span><span>header</span><span> </span><span>import</span><span> </span><span>Header</span><span>
+ 
+</span><span>sender</span><span> = </span><span>'</span><span>from@runoob.com</span><span>'</span><span>
+</span><span>receivers</span><span> = </span><span>[</span><span>'</span><span>429240967@qq.com</span><span>'</span><span>]</span><span>  </span><span># 接收邮件，可设置为你的QQ邮箱或者其他邮箱</span><span>
+ 
+</span><span># 三个参数：第一个为文本内容，第二个 plain 设置文本格式，第三个 utf-8 设置编码</span><span>
+</span><span>message</span><span> = </span><span>MIMEText</span><span>(</span><span>'</span><span>Python 邮件发送测试...</span><span>'</span><span>, </span><span>'</span><span>plain</span><span>'</span><span>, </span><span>'</span><span>utf-8</span><span>'</span><span>)</span><span>
+</span><span>message</span><span>[</span><span>'</span><span>From</span><span>'</span><span>]</span><span> = </span><span>Header</span><span>(</span><span>&quot;</span><span>菜鸟教程</span><span>&quot;</span><span>, </span><span>'</span><span>utf-8</span><span>'</span><span>)</span><span>   </span><span># 发送者</span><span>
+</span><span>message</span><span>[</span><span>'</span><span>To</span><span>'</span><span>]</span><span> =  </span><span>Header</span><span>(</span><span>&quot;</span><span>测试</span><span>&quot;</span><span>, </span><span>'</span><span>utf-8</span><span>'</span><span>)</span><span>        </span><span># 接收者</span><span>
+ 
+</span><span>subject</span><span> = </span><span>'</span><span>Python SMTP 邮件测试</span><span>'</span><span>
+</span><span>message</span><span>[</span><span>'</span><span>Subject</span><span>'</span><span>]</span><span> = </span><span>Header</span><span>(</span><span>subject</span><span>, </span><span>'</span><span>utf-8</span><span>'</span><span>)</span><span>
+ 
+ 
+</span><span>try</span><span>:
+    </span><span>smtpObj</span><span> = </span><span>smtplib</span><span>.</span><span>SMTP</span><span>(</span><span>'</span><span>localhost</span><span>'</span><span>)</span><span>
+    </span><span>smtpObj</span><span>.</span><span>sendmail</span><span>(</span><span>sender</span><span>, </span><span>receivers</span><span>, </span><span>message</span><span>.</span><span>as_string</span><span>(</span><span>)</span><span>)</span><span>
+    </span><span>print</span><span> </span><span>&quot;</span><span>邮件发送成功</span><span>&quot;</span><span>
+</span><span>except</span><span> </span><span>smtplib</span><span>.</span><span>SMTPException</span><span>:
+    </span><span>print</span><span> </span><span>&quot;</span><span>Error: 无法发送邮件</span><span>&quot;</span></div></div></div><p>我们使用三个引号来设置邮件信息，标准邮件需要三个头部信息： <b>From</b>, <b>To</b>, 和 <b>Subject</b> ，每个信息直接使用空行分割。</p><p>我们通过实例化 smtplib 模块的 SMTP 对象 <i>smtpObj</i> 来连接到 SMTP 访问，并使用 <i>sendmail</i> 方法来发送信息。</p><p>执行以上程序，如果你本机安装 <strong>sendmail（邮件传输代理程序）</strong>，就会输出：</p><pre><span>$ python test</span><span>.</span><span>py 
+</span><span>邮件发送成功</span></pre><p>查看我们的收件箱(一般在垃圾箱)，就可以查看到邮件信息：</p><p><img src="Python SMTP发送邮件_files/Image.jpg" type="image/jpeg" data-filename="Image.jpg"/></p><p>如果我们本机没有 sendmail 访问，也可以使用其他邮件服务商的 SMTP 访问（QQ、网易、Google等）。</p><div><h2>实例</h2><div><div><span>#!/usr/bin/python</span><span>
+</span><span># -*- coding: UTF-8 -*-</span><span>
+ 
+</span><span>import</span><span> </span><span>smtplib</span><span>
+</span><span>from</span><span> </span><span>email</span><span>.</span><span>mime</span><span>.</span><span>text</span><span> </span><span>import</span><span> </span><span>MIMEText</span><span>
+</span><span>from</span><span> </span><span>email</span><span>.</span><span>header</span><span> </span><span>import</span><span> </span><span>Header</span><span>
+ 
+</span><span># 第三方 SMTP 服务</span><span>
+</span><span>mail_host</span><span>=</span><span>&quot;</span><span>smtp.XXX.com</span><span>&quot;</span><span>  </span><span>#设置服务器</span><span>
+</span><span>mail_user</span><span>=</span><span>&quot;</span><span>XXXX</span><span>&quot;</span><span>    </span><span>#用户名</span><span>
+</span><span>mail_pass</span><span>=</span><span>&quot;</span><span>XXXXXX</span><span>&quot;</span><span>   </span><span>#口令 </span><span>
+ 
+ 
+</span><span>sender</span><span> = </span><span>'</span><span>from@runoob.com</span><span>'</span><span>
+</span><span>receivers</span><span> = </span><span>[</span><span>'</span><span>429240967@qq.com</span><span>'</span><span>]</span><span>  </span><span># 接收邮件，可设置为你的QQ邮箱或者其他邮箱</span><span>
+ 
+</span><span>message</span><span> = </span><span>MIMEText</span><span>(</span><span>'</span><span>Python 邮件发送测试...</span><span>'</span><span>, </span><span>'</span><span>plain</span><span>'</span><span>, </span><span>'</span><span>utf-8</span><span>'</span><span>)</span><span>
+</span><span>message</span><span>[</span><span>'</span><span>From</span><span>'</span><span>]</span><span> = </span><span>Header</span><span>(</span><span>&quot;</span><span>菜鸟教程</span><span>&quot;</span><span>, </span><span>'</span><span>utf-8</span><span>'</span><span>)</span><span>
+</span><span>message</span><span>[</span><span>'</span><span>To</span><span>'</span><span>]</span><span> =  </span><span>Header</span><span>(</span><span>&quot;</span><span>测试</span><span>&quot;</span><span>, </span><span>'</span><span>utf-8</span><span>'</span><span>)</span><span>
+ 
+</span><span>subject</span><span> = </span><span>'</span><span>Python SMTP 邮件测试</span><span>'</span><span>
+</span><span>message</span><span>[</span><span>'</span><span>Subject</span><span>'</span><span>]</span><span> = </span><span>Header</span><span>(</span><span>subject</span><span>, </span><span>'</span><span>utf-8</span><span>'</span><span>)</span><span>
+ 
+ 
+</span><span>try</span><span>:
+    </span><span>smtpObj</span><span> = </span><span>smtplib</span><span>.</span><span>SMTP</span><span>(</span><span>)</span><span> 
+    </span><span>smtpObj</span><span>.</span><span>connect</span><span>(</span><span>mail_host</span><span>, </span><span>25</span><span>)</span><span>    </span><span># 25 为 SMTP 端口号</span><span>
+    </span><span>smtpObj</span><span>.</span><span>login</span><span>(</span><span>mail_user</span><span>,</span><span>mail_pass</span><span>)</span><span>  
+    </span><span>smtpObj</span><span>.</span><span>sendmail</span><span>(</span><span>sender</span><span>, </span><span>receivers</span><span>, </span><span>message</span><span>.</span><span>as_string</span><span>(</span><span>)</span><span>)</span><span>
+    </span><span>print</span><span> </span><span>&quot;</span><span>邮件发送成功</span><span>&quot;</span><span>
+</span><span>except</span><span> </span><span>smtplib</span><span>.</span><span>SMTPException</span><span>:
+    </span><span>print</span><span> </span><span>&quot;</span><span>Error: 无法发送邮件</span><span>&quot;</span></div></div></div><hr/><h2>使用Python发送HTML格式的邮件</h2><p>Python发送HTML格式的邮件与发送纯文本消息的邮件不同之处就是将MIMEText中_subtype设置为html。具体代码如下：</p><div><h2>实例</h2><div><div><span>#!/usr/bin/python</span><span>
+</span><span># -*- coding: UTF-8 -*-</span><span>
+ 
+</span><span>import</span><span> </span><span>smtplib</span><span>
+</span><span>from</span><span> </span><span>email</span><span>.</span><span>mime</span><span>.</span><span>text</span><span> </span><span>import</span><span> </span><span>MIMEText</span><span>
+</span><span>from</span><span> </span><span>email</span><span>.</span><span>header</span><span> </span><span>import</span><span> </span><span>Header</span><span>
+ 
+</span><span>sender</span><span> = </span><span>'</span><span>from@runoob.com</span><span>'</span><span>
+</span><span>receivers</span><span> = </span><span>[</span><span>'</span><span>429240967@qq.com</span><span>'</span><span>]</span><span>  </span><span># 接收邮件，可设置为你的QQ邮箱或者其他邮箱</span><span>
+ 
+</span><span>mail_msg</span><span> = </span><span>&quot;&quot;&quot;</span><span>
+&lt;p&gt;Python 邮件发送测试...&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.runoob.com&quot;&gt;这是一个链接&lt;/a&gt;&lt;/p&gt;
+</span><span>&quot;&quot;&quot;</span><span>
+</span><span>message</span><span> = </span><span>MIMEText</span><span>(</span><span>mail_msg</span><span>, </span><span>'</span><span>html</span><span>'</span><span>, </span><span>'</span><span>utf-8</span><span>'</span><span>)</span><span>
+</span><span>message</span><span>[</span><span>'</span><span>From</span><span>'</span><span>]</span><span> = </span><span>Header</span><span>(</span><span>&quot;</span><span>菜鸟教程</span><span>&quot;</span><span>, </span><span>'</span><span>utf-8</span><span>'</span><span>)</span><span>
+</span><span>message</span><span>[</span><span>'</span><span>To</span><span>'</span><span>]</span><span> =  </span><span>Header</span><span>(</span><span>&quot;</span><span>测试</span><span>&quot;</span><span>, </span><span>'</span><span>utf-8</span><span>'</span><span>)</span><span>
+ 
+</span><span>subject</span><span> = </span><span>'</span><span>Python SMTP 邮件测试</span><span>'</span><span>
+</span><span>message</span><span>[</span><span>'</span><span>Subject</span><span>'</span><span>]</span><span> = </span><span>Header</span><span>(</span><span>subject</span><span>, </span><span>'</span><span>utf-8</span><span>'</span><span>)</span><span>
+ 
+ 
+</span><span>try</span><span>:
+    </span><span>smtpObj</span><span> = </span><span>smtplib</span><span>.</span><span>SMTP</span><span>(</span><span>'</span><span>localhost</span><span>'</span><span>)</span><span>
+    </span><span>smtpObj</span><span>.</span><span>sendmail</span><span>(</span><span>sender</span><span>, </span><span>receivers</span><span>, </span><span>message</span><span>.</span><span>as_string</span><span>(</span><span>)</span><span>)</span><span>
+    </span><span>print</span><span> </span><span>&quot;</span><span>邮件发送成功</span><span>&quot;</span><span>
+</span><span>except</span><span> </span><span>smtplib</span><span>.</span><span>SMTPException</span><span>:
+    </span><span>print</span><span> </span><span>&quot;</span><span>Error: 无法发送邮件</span><span>&quot;</span></div></div></div><p>执行以上程序，如果你本机安装sendmail，就会输出：</p><pre><span>$ python test</span><span>.</span><span>py 
+</span><span>邮件发送成功</span></pre><p>查看我们的收件箱(一般在垃圾箱)，就可以查看到邮件信息：</p><p><img src="Python SMTP发送邮件_files/Image [1].jpg" type="image/jpeg" data-filename="Image.jpg"/></p><hr/><h2>Python 发送带附件的邮件</h2><p>发送带附件的邮件，首先要创建MIMEMultipart()实例，然后构造附件，如果有多个附件，可依次构造，最后利用smtplib.smtp发送。</p><div><h2>实例</h2><div><div><span>#!/usr/bin/python</span><span>
+</span><span># -*- coding: UTF-8 -*-</span><span>
+ 
+</span><span>import</span><span> </span><span>smtplib</span><span>
+</span><span>from</span><span> </span><span>email</span><span>.</span><span>mime</span><span>.</span><span>text</span><span> </span><span>import</span><span> </span><span>MIMEText</span><span>
+</span><span>from</span><span> </span><span>email</span><span>.</span><span>mime</span><span>.</span><span>multipart</span><span> </span><span>import</span><span> </span><span>MIMEMultipart</span><span>
+</span><span>from</span><span> </span><span>email</span><span>.</span><span>header</span><span> </span><span>import</span><span> </span><span>Header</span><span>
+ 
+</span><span>sender</span><span> = </span><span>'</span><span>from@runoob.com</span><span>'</span><span>
+</span><span>receivers</span><span> = </span><span>[</span><span>'</span><span>429240967@qq.com</span><span>'</span><span>]</span><span>  </span><span># 接收邮件，可设置为你的QQ邮箱或者其他邮箱</span><span>
+ 
+</span><span>#创建一个带附件的实例</span><span>
+</span><span>message</span><span> = </span><span>MIMEMultipart</span><span>(</span><span>)</span><span>
+</span><span>message</span><span>[</span><span>'</span><span>From</span><span>'</span><span>]</span><span> = </span><span>Header</span><span>(</span><span>&quot;</span><span>菜鸟教程</span><span>&quot;</span><span>, </span><span>'</span><span>utf-8</span><span>'</span><span>)</span><span>
+</span><span>message</span><span>[</span><span>'</span><span>To</span><span>'</span><span>]</span><span> =  </span><span>Header</span><span>(</span><span>&quot;</span><span>测试</span><span>&quot;</span><span>, </span><span>'</span><span>utf-8</span><span>'</span><span>)</span><span>
+</span><span>subject</span><span> = </span><span>'</span><span>Python SMTP 邮件测试</span><span>'</span><span>
+</span><span>message</span><span>[</span><span>'</span><span>Subject</span><span>'</span><span>]</span><span> = </span><span>Header</span><span>(</span><span>subject</span><span>, </span><span>'</span><span>utf-8</span><span>'</span><span>)</span><span>
+ 
+</span><span>#邮件正文内容</span><span>
+</span><span>message</span><span>.</span><span>attach</span><span>(</span><span>MIMEText</span><span>(</span><span>'</span><span>这是菜鸟教程Python 邮件发送测试……</span><span>'</span><span>, </span><span>'</span><span>plain</span><span>'</span><span>, </span><span>'</span><span>utf-8</span><span>'</span><span>)</span><span>)</span><span>
+ 
+</span><span># 构造附件1，传送当前目录下的 test.txt 文件</span><span>
+</span><span>att1</span><span> = </span><span>MIMEText</span><span>(</span><span>open</span><span>(</span><span>'</span><span>test.txt</span><span>'</span><span>, </span><span>'</span><span>rb</span><span>'</span><span>)</span><span>.</span><span>read</span><span>(</span><span>)</span><span>, </span><span>'</span><span>base64</span><span>'</span><span>, </span><span>'</span><span>utf-8</span><span>'</span><span>)</span><span>
+</span><span>att1</span><span>[</span><span>&quot;</span><span>Content-Type</span><span>&quot;</span><span>]</span><span> = </span><span>'</span><span>application/octet-stream</span><span>'</span><span>
+</span><span># 这里的filename可以任意写，写什么名字，邮件中显示什么名字</span><span>
+</span><span>att1</span><span>[</span><span>&quot;</span><span>Content-Disposition</span><span>&quot;</span><span>]</span><span> = </span><span>'</span><span>attachment; filename=&quot;test.txt&quot;</span><span>'</span><span>
+</span><span>message</span><span>.</span><span>attach</span><span>(</span><span>att1</span><span>)</span><span>
+ 
+</span><span># 构造附件2，传送当前目录下的 runoob.txt 文件</span><span>
+</span><span>att2</span><span> = </span><span>MIMEText</span><span>(</span><span>open</span><span>(</span><span>'</span><span>runoob.txt</span><span>'</span><span>, </span><span>'</span><span>rb</span><span>'</span><span>)</span><span>.</span><span>read</span><span>(</span><span>)</span><span>, </span><span>'</span><span>base64</span><span>'</span><span>, </span><span>'</span><span>utf-8</span><span>'</span><span>)</span><span>
+</span><span>att2</span><span>[</span><span>&quot;</span><span>Content-Type</span><span>&quot;</span><span>]</span><span> = </span><span>'</span><span>application/octet-stream</span><span>'</span><span>
+</span><span>att2</span><span>[</span><span>&quot;</span><span>Content-Disposition</span><span>&quot;</span><span>]</span><span> = </span><span>'</span><span>attachment; filename=&quot;runoob.txt&quot;</span><span>'</span><span>
+</span><span>message</span><span>.</span><span>attach</span><span>(</span><span>att2</span><span>)</span><span>
+ 
+</span><span>try</span><span>:
+    </span><span>smtpObj</span><span> = </span><span>smtplib</span><span>.</span><span>SMTP</span><span>(</span><span>'</span><span>localhost</span><span>'</span><span>)</span><span>
+    </span><span>smtpObj</span><span>.</span><span>sendmail</span><span>(</span><span>sender</span><span>, </span><span>receivers</span><span>, </span><span>message</span><span>.</span><span>as_string</span><span>(</span><span>)</span><span>)</span><span>
+    </span><span>print</span><span> </span><span>&quot;</span><span>邮件发送成功</span><span>&quot;</span><span>
+</span><span>except</span><span> </span><span>smtplib</span><span>.</span><span>SMTPException</span><span>:
+    </span><span>print</span><span> </span><span>&quot;</span><span>Error: 无法发送邮件</span><span>&quot;</span></div></div></div><pre><span>$ python test</span><span>.</span><span>py 
+</span><span>邮件发送成功</span></pre><p>查看我们的收件箱(一般在垃圾箱)，就可以查看到邮件信息：</p><p><img src="Python SMTP发送邮件_files/Image [2].jpg" type="image/jpeg" data-filename="Image.jpg"/></p><hr/><h2>在 HTML 文本中添加图片</h2><p>邮件的 HTML 文本中一般邮件服务商添加外链是无效的，正确添加图片的实例如下所示：</p><div><h2>实例</h2><div><div><span>#!/usr/bin/python</span><span>
+</span><span># -*- coding: UTF-8 -*-</span><span>
+ 
+</span><span>import</span><span> </span><span>smtplib</span><span>
+</span><span>from</span><span> </span><span>email</span><span>.</span><span>mime</span><span>.</span><span>image</span><span> </span><span>import</span><span> </span><span>MIMEImage</span><span>
+</span><span>from</span><span> </span><span>email</span><span>.</span><span>mime</span><span>.</span><span>multipart</span><span> </span><span>import</span><span> </span><span>MIMEMultipart</span><span>
+</span><span>from</span><span> </span><span>email</span><span>.</span><span>mime</span><span>.</span><span>text</span><span> </span><span>import</span><span> </span><span>MIMEText</span><span>
+</span><span>from</span><span> </span><span>email</span><span>.</span><span>header</span><span> </span><span>import</span><span> </span><span>Header</span><span>
+ 
+</span><span>sender</span><span> = </span><span>'</span><span>from@runoob.com</span><span>'</span><span>
+</span><span>receivers</span><span> = </span><span>[</span><span>'</span><span>429240967@qq.com</span><span>'</span><span>]</span><span>  </span><span># 接收邮件，可设置为你的QQ邮箱或者其他邮箱</span><span>
+ 
+</span><span>msgRoot</span><span> = </span><span>MIMEMultipart</span><span>(</span><span>'</span><span>related</span><span>'</span><span>)</span><span>
+</span><span>msgRoot</span><span>[</span><span>'</span><span>From</span><span>'</span><span>]</span><span> = </span><span>Header</span><span>(</span><span>&quot;</span><span>菜鸟教程</span><span>&quot;</span><span>, </span><span>'</span><span>utf-8</span><span>'</span><span>)</span><span>
+</span><span>msgRoot</span><span>[</span><span>'</span><span>To</span><span>'</span><span>]</span><span> =  </span><span>Header</span><span>(</span><span>&quot;</span><span>测试</span><span>&quot;</span><span>, </span><span>'</span><span>utf-8</span><span>'</span><span>)</span><span>
+</span><span>subject</span><span> = </span><span>'</span><span>Python SMTP 邮件测试</span><span>'</span><span>
+</span><span>msgRoot</span><span>[</span><span>'</span><span>Subject</span><span>'</span><span>]</span><span> = </span><span>Header</span><span>(</span><span>subject</span><span>, </span><span>'</span><span>utf-8</span><span>'</span><span>)</span><span>
+ 
+</span><span>msgAlternative</span><span> = </span><span>MIMEMultipart</span><span>(</span><span>'</span><span>alternative</span><span>'</span><span>)</span><span>
+</span><span>msgRoot</span><span>.</span><span>attach</span><span>(</span><span>msgAlternative</span><span>)</span><span>
+ 
+ 
+</span><span>mail_msg</span><span> = </span><span>&quot;&quot;&quot;</span><span>
+&lt;p&gt;Python 邮件发送测试...&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.runoob.com&quot;&gt;菜鸟教程链接&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;图片演示：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;cid:image1&quot;&gt;&lt;/p&gt;
+</span><span>&quot;&quot;&quot;</span><span>
+</span><span>msgAlternative</span><span>.</span><span>attach</span><span>(</span><span>MIMEText</span><span>(</span><span>mail_msg</span><span>, </span><span>'</span><span>html</span><span>'</span><span>, </span><span>'</span><span>utf-8</span><span>'</span><span>)</span><span>)</span><span>
+ 
+</span><span># 指定图片为当前目录</span><span>
+</span><span>fp</span><span> = </span><span>open</span><span>(</span><span>'</span><span>test.png</span><span>'</span><span>, </span><span>'</span><span>rb</span><span>'</span><span>)</span><span>
+</span><span>msgImage</span><span> = </span><span>MIMEImage</span><span>(</span><span>fp</span><span>.</span><span>read</span><span>(</span><span>)</span><span>)</span><span>
+</span><span>fp</span><span>.</span><span>close</span><span>(</span><span>)</span><span>
+ 
+</span><span># 定义图片 ID，在 HTML 文本中引用</span><span>
+</span><span>msgImage</span><span>.</span><span>add_header</span><span>(</span><span>'</span><span>Content-ID</span><span>'</span><span>, </span><span>'</span><span>&lt;image1&gt;</span><span>'</span><span>)</span><span>
+</span><span>msgRoot</span><span>.</span><span>attach</span><span>(</span><span>msgImage</span><span>)</span><span>
+ 
+</span><span>try</span><span>:
+    </span><span>smtpObj</span><span> = </span><span>smtplib</span><span>.</span><span>SMTP</span><span>(</span><span>'</span><span>localhost</span><span>'</span><span>)</span><span>
+    </span><span>smtpObj</span><span>.</span><span>sendmail</span><span>(</span><span>sender</span><span>, </span><span>receivers</span><span>, </span><span>msgRoot</span><span>.</span><span>as_string</span><span>(</span><span>)</span><span>)</span><span>
+    </span><span>print</span><span> </span><span>&quot;</span><span>邮件发送成功</span><span>&quot;</span><span>
+</span><span>except</span><span> </span><span>smtplib</span><span>.</span><span>SMTPException</span><span>:
+    </span><span>print</span><span> </span><span>&quot;</span><span>Error: 无法发送邮件</span><span>&quot;</span></div></div></div><pre><span>$ python test</span><span>.</span><span>py 
+</span><span>邮件发送成功</span></pre><p>查看我们的收件箱(如果在垃圾箱可能需要移动到收件箱才可正常显示)，就可以查看到邮件信息：</p><p><img src="Python SMTP发送邮件_files/Image [3].jpg" type="image/jpeg" data-filename="Image.jpg"/></p><hr/><h2>使用第三方 SMTP 服务发送</h2><p>这里使用了 QQ 邮箱(你也可以使用 163，Gmail等)的 SMTP 服务，需要做以下配置：</p><p><img src="Python SMTP发送邮件_files/Image [4].jpg" type="image/jpeg" data-filename="Image.jpg"/></p><p>QQ 邮箱通过生成授权码来设置密码：</p><p><img src="Python SMTP发送邮件_files/Image [5].jpg" type="image/jpeg" data-filename="Image.jpg"/></p><p>QQ 邮箱 SMTP 服务器地址：smtp.qq.com，ssl 端口：465。</p><p>以下实例你需要修改：发件人邮箱（你的QQ邮箱），密码，收件人邮箱（可发给自己）。</p><div><h2>QQ SMTP</h2><div><div><span>#!/usr/bin/python</span><span>
+</span><span># -*- coding: UTF-8 -*-</span><span>
+ 
+</span><span>import</span><span> </span><span>smtplib</span><span>
+</span><span>from</span><span> </span><span>email</span><span>.</span><span>mime</span><span>.</span><span>text</span><span> </span><span>import</span><span> </span><span>MIMEText</span><span>
+</span><span>from</span><span> </span><span>email</span><span>.</span><span>utils</span><span> </span><span>import</span><span> </span><span>formataddr</span><span>
+ 
+</span><span>my_sender</span><span>=</span><span>'</span><span>429240967@qq.com</span><span>'</span><span>    </span><span># 发件人邮箱账号</span><span>
+</span><span>my_pass</span><span> = </span><span>'</span><span>xxxxxxxxxx</span><span>'</span><span>              </span><span># 发件人邮箱密码</span><span>
+</span><span>my_user</span><span>=</span><span>'</span><span>429240967@qq.com</span><span>'</span><span>      </span><span># 收件人邮箱账号，我这边发送给自己</span><span>
+</span><span>def</span><span> </span><span>mail</span><span>(</span><span>)</span><span>:
+    </span><span>ret</span><span>=</span><span>True</span><span>
+    </span><span>try</span><span>:
+        </span><span>msg</span><span>=</span><span>MIMEText</span><span>(</span><span>'</span><span>填写邮件内容</span><span>'</span><span>,</span><span>'</span><span>plain</span><span>'</span><span>,</span><span>'</span><span>utf-8</span><span>'</span><span>)</span><span>
+        </span><span>msg</span><span>[</span><span>'</span><span>From</span><span>'</span><span>]</span><span>=</span><span>formataddr</span><span>(</span><span>[</span><span>&quot;</span><span>FromRunoob</span><span>&quot;</span><span>,</span><span>my_sender</span><span>]</span><span>)</span><span>  </span><span># 括号里的对应发件人邮箱昵称、发件人邮箱账号</span><span>
+        </span><span>msg</span><span>[</span><span>'</span><span>To</span><span>'</span><span>]</span><span>=</span><span>formataddr</span><span>(</span><span>[</span><span>&quot;</span><span>FK</span><span>&quot;</span><span>,</span><span>my_user</span><span>]</span><span>)</span><span>              </span><span># 括号里的对应收件人邮箱昵称、收件人邮箱账号</span><span>
+        </span><span>msg</span><span>[</span><span>'</span><span>Subject</span><span>'</span><span>]</span><span>=</span><span>&quot;</span><span>菜鸟教程发送邮件测试</span><span>&quot;</span><span>                </span><span># 邮件的主题，也可以说是标题</span><span>
+ 
+        </span><span>server</span><span>=</span><span>smtplib</span><span>.</span><span>SMTP_SSL</span><span>(</span><span>&quot;</span><span>smtp.qq.com</span><span>&quot;</span><span>, </span><span>465</span><span>)</span><span>  </span><span># 发件人邮箱中的SMTP服务器，端口是25</span><span>
+        </span><span>server</span><span>.</span><span>login</span><span>(</span><span>my_sender</span><span>, </span><span>my_pass</span><span>)</span><span>  </span><span># 括号中对应的是发件人邮箱账号、邮箱密码</span><span>
+        </span><span>server</span><span>.</span><span>sendmail</span><span>(</span><span>my_sender</span><span>,</span><span>[</span><span>my_user</span><span>,</span><span>]</span><span>,</span><span>msg</span><span>.</span><span>as_string</span><span>(</span><span>)</span><span>)</span><span>  </span><span># 括号中对应的是发件人邮箱账号、收件人邮箱账号、发送邮件</span><span>
+        </span><span>server</span><span>.</span><span>quit</span><span>(</span><span>)</span><span>  </span><span># 关闭连接</span><span>
+    </span><span>except</span><span> </span><span>Exception</span><span>:  </span><span># 如果 try 中的语句没有执行，则会执行下面的 ret=False</span><span>
+        </span><span>ret</span><span>=</span><span>False</span><span>
+    </span><span>return</span><span> </span><span>ret</span><span>
+ 
+</span><span>ret</span><span>=</span><span>mail</span><span>(</span><span>)</span><span>
+</span><span>if</span><span> </span><span>ret</span><span>:
+    </span><span>print</span><span>(</span><span>&quot;</span><span>邮件发送成功</span><span>&quot;</span><span>)</span><span>
+</span><span>else</span><span>:
+    </span><span>print</span><span>(</span><span>&quot;</span><span>邮件发送失败</span><span>&quot;</span><span>)</span></div></div></div><pre><span>$ python test</span><span>.</span><span>py 
+</span><span>邮件发送成功</span></pre><p>发送成功后，登陆收件人邮箱即可查看：</p><p><img src="Python SMTP发送邮件_files/Image [6].jpg" type="image/jpeg" data-filename="Image.jpg"/></p><p>更多内容请参阅：<a href="https://docs.python.org/2/library/email-examples.html" shape="rect" target="_blank">https://docs.python.org/2/library/email-examples.html</a>。</p><br clear="none"/></div></span>
+</div></body></html> 
