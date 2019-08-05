@@ -1,0 +1,92 @@
+<html>
+<head>
+  <title>Python While 循环语句</title>
+  <basefont face="微软雅黑" size="2" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="exporter-version" content="YXBJ Windows/600753 (zh-CN, DDL); Windows/6.1.1 (Win64);"/>
+  <style>
+    body, td {
+      font-family: 微软雅黑;
+      font-size: 10pt;
+    }
+  </style>
+</head>
+<body>
+<a name="4353"/>
+<h1>Python While 循环语句</h1>
+<div>
+<table bgcolor="#D4DDE5" border="0">
+<tr><td><b>作者：</b></td><td><i>凌小康</i></td></tr>
+</table>
+</div>
+<br/>
+
+<div>
+<span><div><h1>Python <span>While 循环语句</span></h1><p>Python 编程中 while 语句用于循环执行程序，即在某条件下，循环执行某段程序，以处理需要重复处理的相同任务。其基本形式为：</p><pre><span>while</span><span> </span><span>判断条件：</span><span>
+    </span><span>执行语句……</span></pre><p>执行语句可以是单个语句或语句块。判断条件可以是任何表达式，任何非零、或非空（null）的值均为true。</p><p>当判断条件假false时，循环结束。</p><p>执行流程图如下：</p><img src="Python While 循环语句_files/Image.jpg" type="image/jpeg" data-filename="Image.jpg" alt="python_while_loop" height="404" width="263"/><h3>Gif 演示 Python while 语句执行过程</h3><img src="Python While 循环语句_files/Image.gif" type="image/gif" data-filename="Image.gif"/><p></p><div><h2>实例</h2><div><div><span>#!/usr/bin/python</span><span>
+ 
+</span><span>count</span><span> = </span><span>0</span><span>
+</span><span>while</span><span> </span><span>(</span><span>count</span><span> &lt; </span><span>9</span><span>)</span><span>:
+   </span><span>print</span><span> </span><span>'</span><span>The count is:</span><span>'</span><span>, </span><span>count</span><span>
+   </span><span>count</span><span> = </span><span>count</span><span> + </span><span>1</span><span>
+ 
+</span><span>print</span><span> </span><span>&quot;</span><span>Good bye!</span><span>&quot;</span></div></div><br clear="none"/><a href="http://www.runoob.com/try/runcode.php?filename=test_while&amp;type=python" shape="rect" target="_blank">运行实例 »</a></div><p>以上代码执行输出结果:</p><pre><span>The</span><span> count </span><span>is</span><span>:</span><span> </span><span>0</span><span>
+</span><span>The</span><span> count </span><span>is</span><span>:</span><span> </span><span>1</span><span>
+</span><span>The</span><span> count </span><span>is</span><span>:</span><span> </span><span>2</span><span>
+</span><span>The</span><span> count </span><span>is</span><span>:</span><span> </span><span>3</span><span>
+</span><span>The</span><span> count </span><span>is</span><span>:</span><span> </span><span>4</span><span>
+</span><span>The</span><span> count </span><span>is</span><span>:</span><span> </span><span>5</span><span>
+</span><span>The</span><span> count </span><span>is</span><span>:</span><span> </span><span>6</span><span>
+</span><span>The</span><span> count </span><span>is</span><span>:</span><span> </span><span>7</span><span>
+</span><span>The</span><span> count </span><span>is</span><span>:</span><span> </span><span>8</span><span>
+</span><span>Good</span><span> bye</span><span>!</span></pre><p>while 语句时还有另外两个重要的命令 continue，break 来跳过循环，continue 用于跳过该次循环，break 则是用于退出循环，此外&quot;判断条件&quot;还可以是个常值，表示循环必定成立，具体用法如下：</p><div><div><div><span># continue 和 break 用法</span><span>
+ 
+</span><span>i</span><span> = </span><span>1</span><span>
+</span><span>while</span><span> </span><span>i</span><span> &lt; </span><span>10</span><span>:   
+    </span><span>i</span><span> += </span><span>1</span><span>
+    </span><span>if</span><span> </span><span>i</span><span>%</span><span>2</span><span> &gt; </span><span>0</span><span>:     </span><span># 非双数时跳过输出</span><span>
+        </span><span>continue</span><span>
+    </span><span>print</span><span> </span><span>i</span><span>         </span><span># 输出双数2、4、6、8、10</span><span>
+ 
+</span><span>i</span><span> = </span><span>1</span><span>
+</span><span>while</span><span> </span><span>1</span><span>:            </span><span># 循环条件为1必定成立</span><span>
+    </span><span>print</span><span> </span><span>i</span><span>         </span><span># 输出1~10</span><span>
+    </span><span>i</span><span> += </span><span>1</span><span>
+    </span><span>if</span><span> </span><span>i</span><span> &gt; </span><span>10</span><span>:     </span><span># 当i大于10时跳出循环</span><span>
+        </span><span>break</span></div></div></div><br clear="none"/><hr/><h2>无限循环</h2><p>如果条件判断语句永远为 true，循环将会无限的执行下去，如下实例：</p><div><h2>实例</h2><div><div><span>#!/usr/bin/python</span><span>
+</span><span># -*- coding: UTF-8 -*-</span><span>
+ 
+</span><span>var</span><span> = </span><span>1</span><span>
+</span><span>while</span><span> </span><span>var</span><span> == </span><span>1</span><span> :  </span><span># 该条件永远为true，循环将无限执行下去</span><span>
+   </span><span>num</span><span> = </span><span>raw_input</span><span>(</span><span>&quot;</span><span>Enter a number  :</span><span>&quot;</span><span>)</span><span>
+   </span><span>print</span><span> </span><span>&quot;</span><span>You entered: </span><span>&quot;</span><span>, </span><span>num</span><span>
+ 
+</span><span>print</span><span> </span><span>&quot;</span><span>Good bye!</span><span>&quot;</span></div></div></div><p></p><p>以上实例输出结果：</p><pre><span>Enter</span><span> a number  </span><span>:</span><span>20</span><span>
+</span><span>You</span><span> entered</span><span>:</span><span>  </span><span>20</span><span>
+</span><span>Enter</span><span> a number  </span><span>:</span><span>29</span><span>
+</span><span>You</span><span> entered</span><span>:</span><span>  </span><span>29</span><span>
+</span><span>Enter</span><span> a number  </span><span>:</span><span>3</span><span>
+</span><span>You</span><span> entered</span><span>:</span><span>  </span><span>3</span><span>
+</span><span>Enter</span><span> a number between </span><span>:</span><span>Traceback</span><span> </span><span>(</span><span>most recent call </span><span>last</span><span>):</span><span>
+  </span><span>File</span><span> </span><span>&quot;test.py&quot;</span><span>,</span><span> line </span><span>5</span><span>,</span><span> </span><span>in</span><span> </span><span>&lt;module&gt;</span><span>
+    num </span><span>=</span><span> raw_input</span><span>(</span><span>&quot;Enter a number :&quot;</span><span>)</span><span>
+</span><span>KeyboardInterrupt</span></pre><p></p><p><strong>注意：</strong>以上的无限循环你可以使用 CTRL+C 来中断循环。</p><br clear="none"/><hr/><h2>循环使用 else 语句</h2><p>在 python 中，while … else 在循环条件为 false 时执行 else 语句块：</p><div><h2>实例</h2><div><div><span>#!/usr/bin/python</span><span>
+ 
+</span><span>count</span><span> = </span><span>0</span><span>
+</span><span>while</span><span> </span><span>count</span><span> &lt; </span><span>5</span><span>:
+   </span><span>print</span><span> </span><span>count</span><span>, </span><span>&quot;</span><span> is  less than 5</span><span>&quot;</span><span>
+   </span><span>count</span><span> = </span><span>count</span><span> + </span><span>1</span><span>
+</span><span>else</span><span>:
+   </span><span>print</span><span> </span><span>count</span><span>, </span><span>&quot;</span><span> is not less than 5</span><span>&quot;</span></div></div></div><p>以上实例输出结果为：</p><pre><span>0</span><span> </span><span>is</span><span> less than </span><span>5</span><span>
+</span><span>1</span><span> </span><span>is</span><span> less than </span><span>5</span><span>
+</span><span>2</span><span> </span><span>is</span><span> less than </span><span>5</span><span>
+</span><span>3</span><span> </span><span>is</span><span> less than </span><span>5</span><span>
+</span><span>4</span><span> </span><span>is</span><span> less than </span><span>5</span><span>
+</span><span>5</span><span> </span><span>is</span><span> </span><span>not</span><span> less than </span><span>5</span></pre><br clear="none"/><hr/><h2>简单语句组</h2><p>类似 if 语句的语法，如果你的 while 循环体中只有一条语句，你可以将该语句与while写在同一行中， 如下所示：</p><div><h2>实例</h2><div><div><span>#!/usr/bin/python</span><span>
+ 
+</span><span>flag</span><span> = </span><span>1</span><span>
+ 
+</span><span>while</span><span> </span><span>(</span><span>flag</span><span>)</span><span>: </span><span>print</span><span> </span><span>'</span><span>Given flag is really true!</span><span>'</span><span>
+ 
+</span><span>print</span><span> </span><span>&quot;</span><span>Good bye!</span><span>&quot;</span></div></div></div><p><strong>注意：</strong>以上的无限循环你可以使用 <span>CTRL+C</span> 来中断循环。</p><br clear="none"/></div></span>
+</div></body></html> 
