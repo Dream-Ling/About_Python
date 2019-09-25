@@ -1,0 +1,57 @@
+<html>
+<head>
+  <title>Python 列表(List)</title>
+  <basefont face="微软雅黑" size="2" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="exporter-version" content="YXBJ Windows/600753 (zh-CN, DDL); Windows/6.1.1 (Win64);"/>
+  <style>
+    body, td {
+      font-family: 微软雅黑;
+      font-size: 10pt;
+    }
+  </style>
+</head>
+<body>
+<a name="4342"/>
+<h1>Python 列表(List)</h1>
+<div>
+<table bgcolor="#D4DDE5" border="0">
+<tr><td><b>作者：</b></td><td><i>凌小康</i></td></tr>
+</table>
+</div>
+<br/>
+
+<div>
+<span><div><h1>Python <span>列表(List)</span></h1><p>序列是Python中最基本的数据结构。序列中的每个元素都分配一个数字 - 它的位置，或索引，第一个索引是0，第二个索引是1，依此类推。</p><p>Python有6个序列的内置类型，但最常见的是列表和元组。</p><p>序列都可以进行的操作包括索引，切片，加，乘，检查成员。</p><p>此外，Python已经内置确定序列的长度以及确定最大和最小的元素的方法。</p><p>列表是最常用的Python数据类型，它可以作为一个方括号内的逗号分隔值出现。</p><p>列表的数据项不需要具有相同的类型</p><p>创建一个列表，只要把逗号分隔的不同的数据项使用方括号括起来即可。如下所示：</p><div><div><div><span>list1</span><span> = </span><span>[</span><span>'</span><span>physics</span><span>'</span><span>, </span><span>'</span><span>chemistry</span><span>'</span><span>, </span><span>1997</span><span>, </span><span>2000</span><span>]</span><span>
+</span><span>list2</span><span> = </span><span>[</span><span>1</span><span>, </span><span>2</span><span>, </span><span>3</span><span>, </span><span>4</span><span>, </span><span>5</span><span> </span><span>]</span><span>
+</span><span>list3</span><span> = </span><span>[</span><span>&quot;</span><span>a</span><span>&quot;</span><span>, </span><span>&quot;</span><span>b</span><span>&quot;</span><span>, </span><span>&quot;</span><span>c</span><span>&quot;</span><span>, </span><span>&quot;</span><span>d</span><span>&quot;</span><span>]</span></div></div></div><p>与字符串的索引一样，列表索引从0开始。列表可以进行截取、组合等。</p><hr/><h2>访问列表中的值</h2><p>使用下标索引来访问列表中的值，同样你也可以使用方括号的形式截取字符，如下所示：</p><div><h2>实例(Python 2.0+)</h2><div><div><span>#!/usr/bin/python</span><span>
+ 
+</span><span>list1</span><span> = </span><span>[</span><span>'</span><span>physics</span><span>'</span><span>, </span><span>'</span><span>chemistry</span><span>'</span><span>, </span><span>1997</span><span>, </span><span>2000</span><span>]</span><span>
+</span><span>list2</span><span> = </span><span>[</span><span>1</span><span>, </span><span>2</span><span>, </span><span>3</span><span>, </span><span>4</span><span>, </span><span>5</span><span>, </span><span>6</span><span>, </span><span>7</span><span> </span><span>]</span><span>
+ 
+</span><span>print</span><span> </span><span>&quot;</span><span>list1[0]: </span><span>&quot;</span><span>, </span><span>list1</span><span>[</span><span>0</span><span>]</span><span>
+</span><span>print</span><span> </span><span>&quot;</span><span>list2[1:5]: </span><span>&quot;</span><span>, </span><span>list2</span><span>[</span><span>1</span><span>:</span><span>5</span><span>]</span></div></div></div><p>以上实例输出结果：</p><pre><span>list1</span><span>[</span><span>0</span><span>]:</span><span>  physics
+list2</span><span>[</span><span>1</span><span>:</span><span>5</span><span>]:</span><span>  </span><span>[</span><span>2</span><span>,</span><span> </span><span>3</span><span>,</span><span> </span><span>4</span><span>,</span><span> </span><span>5</span><span>]</span></pre><hr/><h2>更新列表</h2><span>你可以对列表的数据项进行修改或更新，你也可以使用append()方法来添加列表项，如下所示：</span><div><h2>实例(Python 2.0+)</h2><div><div><span>#!/usr/bin/python</span><span>
+</span><span># -*- coding: UTF-8 -*-</span><span>
+ 
+</span><span>list</span><span> = </span><span>[</span><span>]</span><span>          </span><span>## 空列表</span><span>
+</span><span>list</span><span>.</span><span>append</span><span>(</span><span>'</span><span>Google</span><span>'</span><span>)</span><span>   </span><span>## 使用 append() 添加元素</span><span>
+</span><span>list</span><span>.</span><span>append</span><span>(</span><span>'</span><span>Runoob</span><span>'</span><span>)</span><span>
+</span><span>print</span><span> </span><span>list</span></div></div></div><p><strong>注意：</strong>我们会在接下来的章节讨论append()方法的使用</p><p>以上实例输出结果：</p><pre><span>[</span><span>'Google'</span><span>,</span><span> </span><span>'Runoob'</span><span>]</span></pre><hr/><h2>删除列表元素</h2><p>可以使用 del 语句来删除列表的元素，如下实例：</p><div><h2>实例(Python 2.0+)</h2><div><div><span>#!/usr/bin/python</span><span>
+ 
+</span><span>list1</span><span> = </span><span>[</span><span>'</span><span>physics</span><span>'</span><span>, </span><span>'</span><span>chemistry</span><span>'</span><span>, </span><span>1997</span><span>, </span><span>2000</span><span>]</span><span>
+ 
+</span><span>print</span><span> </span><span>list1</span><span>
+</span><span>del</span><span> </span><span>list1</span><span>[</span><span>2</span><span>]</span><span>
+</span><span>print</span><span> </span><span>&quot;</span><span>After deleting value at index 2 : </span><span>&quot;</span><span>
+</span><span>print</span><span> </span><span>list1</span></div></div></div><p>以上实例输出结果：</p><pre><span>[</span><span>'physics'</span><span>,</span><span> </span><span>'chemistry'</span><span>,</span><span> </span><span>1997</span><span>,</span><span> </span><span>2000</span><span>]</span><span>
+</span><span>After</span><span> deleting value at index </span><span>2</span><span> </span><span>:</span><span>
+</span><span>[</span><span>'physics'</span><span>,</span><span> </span><span>'chemistry'</span><span>,</span><span> </span><span>2000</span><span>]</span></pre><p><strong>注意：</strong>我们会在接下来的章节讨论remove()方法的使用</p><hr/><h2>Python列表脚本操作符</h2><p>列表对 + 和 * 的操作符与字符串相似。+ 号用于组合列表，* 号用于重复列表。</p><p>如下所示：</p><table><tr><th colspan="1" rowspan="1">Python 表达式</th><th colspan="1" rowspan="1">结果</th><th colspan="1" rowspan="1">描述</th></tr><tr><td colspan="1" rowspan="1">len([1, 2, 3])</td><td colspan="1" rowspan="1">3</td><td colspan="1" rowspan="1">长度</td></tr><tr><td colspan="1" rowspan="1">[1, 2, 3] + [4, 5, 6]</td><td colspan="1" rowspan="1">[1, 2, 3, 4, 5, 6]</td><td colspan="1" rowspan="1">组合</td></tr><tr><td colspan="1" rowspan="1">['Hi!'] * 4</td><td colspan="1" rowspan="1">['Hi!', 'Hi!', 'Hi!', 'Hi!']</td><td colspan="1" rowspan="1">重复</td></tr><tr><td colspan="1" rowspan="1">3 in [1, 2, 3]</td><td colspan="1" rowspan="1">True</td><td colspan="1" rowspan="1">元素是否存在于列表中</td></tr><tr><td colspan="1" rowspan="1">for x in [1, 2, 3]: print x,</td><td colspan="1" rowspan="1">1 2 3</td><td colspan="1" rowspan="1">迭代</td></tr></table><hr/><h2>Python列表截取</h2><p>Python 的列表截取实例如下：</p><div><div><div><span>&gt;&gt;&gt;</span><span>L</span><span> = </span><span>[</span><span>'</span><span>Google</span><span>'</span><span>, </span><span>'</span><span>Runoob</span><span>'</span><span>, </span><span>'</span><span>Taobao</span><span>'</span><span>]</span><span>
+&gt;&gt;&gt; </span><span>L</span><span>[</span><span>2</span><span>]</span><span>
+</span><span>'</span><span>Taobao</span><span>'</span><span>
+&gt;&gt;&gt; </span><span>L</span><span>[</span><span>-</span><span>2</span><span>]</span><span>
+</span><span>'</span><span>Runoob</span><span>'</span><span>
+&gt;&gt;&gt; </span><span>L</span><span>[</span><span>1</span><span>:</span><span>]</span><span>
+</span><span>[</span><span>'</span><span>Runoob</span><span>'</span><span>, </span><span>'</span><span>Taobao</span><span>'</span><span>]</span><span>
+&gt;&gt;&gt;</span></div></div></div><p>描述：</p><table><tr><th colspan="1" rowspan="1">Python 表达式</th><th colspan="1" rowspan="1">结果</th><th colspan="1" rowspan="1">描述</th></tr><tr><td colspan="1" rowspan="1">L[2]</td><td colspan="1" rowspan="1">'Taobao'</td><td colspan="1" rowspan="1">读取列表中第三个元素</td></tr><tr><td colspan="1" rowspan="1">L[-2]</td><td colspan="1" rowspan="1">'Runoob'</td><td colspan="1" rowspan="1">读取列表中倒数第二个元素</td></tr><tr><td colspan="1" rowspan="1">L[1:]</td><td colspan="1" rowspan="1">['Runoob', 'Taobao']</td><td colspan="1" rowspan="1">从第二个元素开始截取列表</td></tr></table><hr/><h2>Python列表函数&amp;方法</h2><p>Python包含以下函数:</p><table><tr><th colspan="1" rowspan="1">序号</th><th colspan="1" rowspan="1">函数</th></tr><tr><td colspan="1" rowspan="1">1</td><td colspan="1" rowspan="1"><a href="http://www.runoob.com/python/att-list-cmp.html" shape="rect" target="_blank">cmp(list1, list2)</a><br clear="none"/>比较两个列表的元素</td></tr><tr><td colspan="1" rowspan="1">2</td><td colspan="1" rowspan="1"><a href="http://www.runoob.com/python/att-list-len.html" shape="rect" target="_blank">len(list)</a><br clear="none"/>列表元素个数</td></tr><tr><td colspan="1" rowspan="1">3</td><td colspan="1" rowspan="1"><a href="http://www.runoob.com/python/att-list-max.html" shape="rect" target="_blank">max(list)</a><br clear="none"/>返回列表元素最大值</td></tr><tr><td colspan="1" rowspan="1">4</td><td colspan="1" rowspan="1"><a href="http://www.runoob.com/python/att-list-min.html" shape="rect" target="_blank">min(list)</a><br clear="none"/>返回列表元素最小值</td></tr><tr><td colspan="1" rowspan="1">5</td><td colspan="1" rowspan="1"><a href="http://www.runoob.com/python/att-list-list.html" shape="rect" target="_blank">list(seq)</a><br clear="none"/>将元组转换为列表</td></tr></table><p>Python包含以下方法:</p><table><tr><th colspan="1" rowspan="1">序号</th><th colspan="1" rowspan="1">方法</th></tr><tr><td colspan="1" rowspan="1">1</td><td colspan="1" rowspan="1"><a href="http://www.runoob.com/python/att-list-append.html" shape="rect" target="_blank">list.append(obj)</a><br clear="none"/>在列表末尾添加新的对象</td></tr><tr><td colspan="1" rowspan="1">2</td><td colspan="1" rowspan="1"><a href="http://www.runoob.com/python/att-list-count.html" shape="rect" target="_blank">list.count(obj)</a><br clear="none"/>统计某个元素在列表中出现的次数</td></tr><tr><td colspan="1" rowspan="1">3</td><td colspan="1" rowspan="1"><a href="http://www.runoob.com/python/att-list-extend.html" shape="rect" target="_blank">list.extend(seq)</a><br clear="none"/>在列表末尾一次性追加另一个序列中的多个值（用新列表扩展原来的列表）</td></tr><tr><td colspan="1" rowspan="1">4</td><td colspan="1" rowspan="1"><a href="http://www.runoob.com/python/att-list-index.html" shape="rect" target="_blank">list.index(obj)</a><br clear="none"/>从列表中找出某个值第一个匹配项的索引位置</td></tr><tr><td colspan="1" rowspan="1">5</td><td colspan="1" rowspan="1"><a href="http://www.runoob.com/python/att-list-insert.html" shape="rect" target="_blank">list.insert(index, obj)</a><br clear="none"/>将对象插入列表</td></tr><tr><td colspan="1" rowspan="1">6</td><td colspan="1" rowspan="1"><a href="http://www.runoob.com/python/att-list-pop.html" shape="rect" target="_blank">list.pop([index=-1])</a><br clear="none"/>移除列表中的一个元素（默认最后一个元素），并且返回该元素的值</td></tr><tr><td colspan="1" rowspan="1">7</td><td colspan="1" rowspan="1"><a href="http://www.runoob.com/python/att-list-remove.html" shape="rect" target="_blank">list.remove(obj)</a><br clear="none"/>移除列表中某个值的第一个匹配项</td></tr><tr><td colspan="1" rowspan="1">8</td><td colspan="1" rowspan="1"><a href="http://www.runoob.com/python/att-list-reverse.html" shape="rect" target="_blank">list.reverse()</a><br clear="none"/>反向列表中元素</td></tr><tr><td colspan="1" rowspan="1">9</td><td colspan="1" rowspan="1"><a href="http://www.runoob.com/python/att-list-sort.html" shape="rect" target="_blank">list.sort(cmp=None, key=None, reverse=False)</a><br clear="none"/>对原列表进行排序</td></tr></table><br clear="none"/></div></span>
+</div></body></html> 
