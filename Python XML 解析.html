@@ -1,0 +1,204 @@
+<html>
+<head>
+  <title>Python XML 解析</title>
+  <basefont face="微软雅黑" size="2" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="exporter-version" content="YXBJ Windows/600753 (zh-CN, DDL); Windows/6.1.1 (Win64);"/>
+  <style>
+    body, td {
+      font-family: 微软雅黑;
+      font-size: 10pt;
+    }
+  </style>
+</head>
+<body>
+<a name="4305"/>
+<h1>Python XML 解析</h1>
+<div>
+<table bgcolor="#D4DDE5" border="0">
+<tr><td><b>作者：</b></td><td><i>凌小康</i></td></tr>
+</table>
+</div>
+<br/>
+
+<div>
+<span><div><h1>Python XML 解析</h1><hr/><h2>什么是 XML？</h2><p>XML 指可扩展标记语言（e<b>X</b>tensible <b>M</b>arkup <b>L</b>anguage）。 你可以通过本站学习 <a href="http://www.runoob.com/xml/xml-tutorial.html" shape="rect" target="_blank" title="XML教程">XML 教程</a></p><p>XML 被设计用来传输和存储数据。</p><p>XML 是一套定义语义标记的规则，这些标记将文档分成许多部件并对这些部件加以标识。</p><p>它也是元标记语言，即定义了用于定义其他与特定领域有关的、语义的、结构化的标记语言的句法语言。</p><hr/><h2>Python 对 XML 的解析</h2><p>常见的 XML 编程接口有 DOM 和 SAX，这两种接口处理 XML 文件的方式不同，当然使用场合也不同。</p><p>Python 有三种方法解析 XML，SAX，DOM，以及 ElementTree:</p><h3>1.SAX (simple API for XML )</h3><p>Python 标准库包含 SAX 解析器，SAX 用事件驱动模型，通过在解析XML的过程中触发一个个的事件并调用用户定义的回调函数来处理XML文件。</p><h3>2.DOM(Document Object Model)</h3><p>将 XML 数据在内存中解析成一个树，通过对树的操作来操作XML。</p><h3>3.ElementTree(元素树)</h3><p>ElementTree就像一个轻量级的DOM，具有方便友好的API。代码可用性好，速度快，消耗内存少。</p><p><strong>注：</strong>因DOM需要将XML数据映射到内存中的树，一是比较慢，二是比较耗内存，而SAX流式读取XML文件，比较快，占用内存少，但需要用户实现回调函数（handler）。</p><p>本章节使用到的 XML 实例文件 movies.xml 内容如下：</p><div><h2>movies.xml</h2><div><div><span>&lt;</span><span>collection</span><span> </span><span>shelf</span><span>=</span><span>&quot;</span><span>New Arrivals</span><span>&quot;</span><span>&gt;</span><span>
+</span><span>&lt;</span><span>movie</span><span> </span><span>title</span><span>=</span><span>&quot;</span><span>Enemy Behind</span><span>&quot;</span><span>&gt;</span><span>
+   </span><span>&lt;</span><span>type</span><span>&gt;</span><span>War, Thriller</span><span>&lt;/</span><span>type</span><span>&gt;</span><span>
+   </span><span>&lt;</span><span>format</span><span>&gt;</span><span>DVD</span><span>&lt;/</span><span>format</span><span>&gt;</span><span>
+   </span><span>&lt;</span><span>year</span><span>&gt;</span><span>2003</span><span>&lt;/</span><span>year</span><span>&gt;</span><span>
+   </span><span>&lt;</span><span>rating</span><span>&gt;</span><span>PG</span><span>&lt;/</span><span>rating</span><span>&gt;</span><span>
+   </span><span>&lt;</span><span>stars</span><span>&gt;</span><span>10</span><span>&lt;/</span><span>stars</span><span>&gt;</span><span>
+   </span><span>&lt;</span><span>description</span><span>&gt;</span><span>Talk about a US-Japan war</span><span>&lt;/</span><span>description</span><span>&gt;</span><span>
+</span><span>&lt;/</span><span>movie</span><span>&gt;</span><span>
+</span><span>&lt;</span><span>movie</span><span> </span><span>title</span><span>=</span><span>&quot;</span><span>Transformers</span><span>&quot;</span><span>&gt;</span><span>
+   </span><span>&lt;</span><span>type</span><span>&gt;</span><span>Anime, Science Fiction</span><span>&lt;/</span><span>type</span><span>&gt;</span><span>
+   </span><span>&lt;</span><span>format</span><span>&gt;</span><span>DVD</span><span>&lt;/</span><span>format</span><span>&gt;</span><span>
+   </span><span>&lt;</span><span>year</span><span>&gt;</span><span>1989</span><span>&lt;/</span><span>year</span><span>&gt;</span><span>
+   </span><span>&lt;</span><span>rating</span><span>&gt;</span><span>R</span><span>&lt;/</span><span>rating</span><span>&gt;</span><span>
+   </span><span>&lt;</span><span>stars</span><span>&gt;</span><span>8</span><span>&lt;/</span><span>stars</span><span>&gt;</span><span>
+   </span><span>&lt;</span><span>description</span><span>&gt;</span><span>A schientific fiction</span><span>&lt;/</span><span>description</span><span>&gt;</span><span>
+</span><span>&lt;/</span><span>movie</span><span>&gt;</span><span>
+   </span><span>&lt;</span><span>movie</span><span> </span><span>title</span><span>=</span><span>&quot;</span><span>Trigun</span><span>&quot;</span><span>&gt;</span><span>
+   </span><span>&lt;</span><span>type</span><span>&gt;</span><span>Anime, Action</span><span>&lt;/</span><span>type</span><span>&gt;</span><span>
+   </span><span>&lt;</span><span>format</span><span>&gt;</span><span>DVD</span><span>&lt;/</span><span>format</span><span>&gt;</span><span>
+   </span><span>&lt;</span><span>episodes</span><span>&gt;</span><span>4</span><span>&lt;/</span><span>episodes</span><span>&gt;</span><span>
+   </span><span>&lt;</span><span>rating</span><span>&gt;</span><span>PG</span><span>&lt;/</span><span>rating</span><span>&gt;</span><span>
+   </span><span>&lt;</span><span>stars</span><span>&gt;</span><span>10</span><span>&lt;/</span><span>stars</span><span>&gt;</span><span>
+   </span><span>&lt;</span><span>description</span><span>&gt;</span><span>Vash the Stampede!</span><span>&lt;/</span><span>description</span><span>&gt;</span><span>
+</span><span>&lt;/</span><span>movie</span><span>&gt;</span><span>
+</span><span>&lt;</span><span>movie</span><span> </span><span>title</span><span>=</span><span>&quot;</span><span>Ishtar</span><span>&quot;</span><span>&gt;</span><span>
+   </span><span>&lt;</span><span>type</span><span>&gt;</span><span>Comedy</span><span>&lt;/</span><span>type</span><span>&gt;</span><span>
+   </span><span>&lt;</span><span>format</span><span>&gt;</span><span>VHS</span><span>&lt;/</span><span>format</span><span>&gt;</span><span>
+   </span><span>&lt;</span><span>rating</span><span>&gt;</span><span>PG</span><span>&lt;/</span><span>rating</span><span>&gt;</span><span>
+   </span><span>&lt;</span><span>stars</span><span>&gt;</span><span>2</span><span>&lt;/</span><span>stars</span><span>&gt;</span><span>
+   </span><span>&lt;</span><span>description</span><span>&gt;</span><span>Viewable boredom</span><span>&lt;/</span><span>description</span><span>&gt;</span><span>
+</span><span>&lt;/</span><span>movie</span><span>&gt;</span><span>
+</span><span>&lt;/</span><span>collection</span><span>&gt;</span></div></div></div><hr/><h2>python使用SAX解析xml</h2><p>SAX是一种基于事件驱动的 API。</p><p>利用SAX解析XML文档牵涉到两个部分: <strong>解析器</strong>和<strong>事件处理器</strong>。</p><p>解析器负责读取XML文档，并向事件处理器发送事件，如元素开始跟元素结束事件。</p><p>而事件处理器则负责对事件作出响应，对传递的XML数据进行处理。</p><ul><li>1、对大型文件进行处理；</li><li>2、只需要文件的部分内容，或者只需从文件中得到特定信息。</li><li>3、想建立自己的对象模型的时候。</li></ul><p>在python中使用sax方式处理xml要先引入xml.sax中的parse函数，还有xml.sax.handler中的ContentHandler。</p><h3>ContentHandler类方法介绍</h3><p><strong>characters(content)方法</strong></p><p>调用时机：</p><p>从行开始，遇到标签之前，存在字符，content 的值为这些字符串。</p><p>从一个标签，遇到下一个标签之前， 存在字符，content 的值为这些字符串。</p><p>从一个标签，遇到行结束符之前，存在字符，content 的值为这些字符串。</p><p>标签可以是开始标签，也可以是结束标签。</p><p><strong>startDocument() 方法</strong></p><p>文档启动的时候调用。</p><p><strong>endDocument() 方法</strong></p><p>解析器到达文档结尾时调用。</p><p><strong>startElement(name, attrs)方法</strong></p><p>遇到XML开始标签时调用，name是标签的名字，attrs是标签的属性值字典。</p><p><strong>endElement(name) 方法</strong></p><p>遇到XML结束标签时调用。</p><hr/><h2>make_parser方法</h2><p>以下方法创建一个新的解析器对象并返回。</p><pre><span>xml</span><span>.</span><span>sax</span><span>.</span><span>make_parser</span><span>(</span><span> </span><span>[</span><span>parser_list</span><span>]</span><span> </span><span>)</span></pre><p>参数说明:</p><ul><li><strong>parser_list</strong> - 可选参数，解析器列表</li></ul><hr/><h2>parser方法</h2><p>以下方法创建一个 SAX 解析器并解析xml文档：</p><pre><span>xml</span><span>.</span><span>sax</span><span>.</span><span>parse</span><span>(</span><span> xmlfile</span><span>,</span><span> contenthandler</span><span>[,</span><span> errorhandler</span><span>])</span></pre><p>参数说明:</p><ul><li><strong>xmlfile</strong> - xml文件名</li><li><strong>contenthandler</strong> - 必须是一个ContentHandler的对象</li><li><strong>errorhandler</strong> - 如果指定该参数，errorhandler必须是一个SAX ErrorHandler对象</li></ul><hr/><h2>parseString方法</h2><p>parseString方法创建一个XML解析器并解析xml字符串：</p><pre><span>xml</span><span>.</span><span>sax</span><span>.</span><span>parseString</span><span>(</span><span>xmlstring</span><span>,</span><span> contenthandler</span><span>[,</span><span> errorhandler</span><span>])</span></pre><p>参数说明:</p><ul><li><strong>xmlstring</strong> - xml字符串</li><li><strong>contenthandler</strong> - 必须是一个ContentHandler的对象</li><li><strong>errorhandler</strong> - 如果指定该参数，errorhandler必须是一个SAX ErrorHandler对象</li></ul><hr/><h2>Python 解析XML实例</h2><div><h2>实例</h2><div><div><span>#!/usr/bin/python</span><span>
+</span><span># -*- coding: UTF-8 -*-</span><span>
+ 
+</span><span>import</span><span> </span><span>xml</span><span>.</span><span>sax</span><span>
+ 
+</span><span>class</span><span> </span><span>MovieHandler</span><span>(</span><span> </span><span>xml</span><span>.</span><span>sax</span><span>.</span><span>ContentHandler</span><span> </span><span>)</span><span>:
+   </span><span>def</span><span> </span><span>__init__</span><span>(</span><span>self</span><span>)</span><span>:
+      </span><span>self</span><span>.</span><span>CurrentData</span><span> = </span><span>&quot;</span><span>&quot;</span><span>
+      </span><span>self</span><span>.</span><span>type</span><span> = </span><span>&quot;</span><span>&quot;</span><span>
+      </span><span>self</span><span>.</span><span>format</span><span> = </span><span>&quot;</span><span>&quot;</span><span>
+      </span><span>self</span><span>.</span><span>year</span><span> = </span><span>&quot;</span><span>&quot;</span><span>
+      </span><span>self</span><span>.</span><span>rating</span><span> = </span><span>&quot;</span><span>&quot;</span><span>
+      </span><span>self</span><span>.</span><span>stars</span><span> = </span><span>&quot;</span><span>&quot;</span><span>
+      </span><span>self</span><span>.</span><span>description</span><span> = </span><span>&quot;</span><span>&quot;</span><span>
+ 
+   </span><span># 元素开始事件处理</span><span>
+   </span><span>def</span><span> </span><span>startElement</span><span>(</span><span>self</span><span>, </span><span>tag</span><span>, </span><span>attributes</span><span>)</span><span>:
+      </span><span>self</span><span>.</span><span>CurrentData</span><span> = </span><span>tag</span><span>
+      </span><span>if</span><span> </span><span>tag</span><span> == </span><span>&quot;</span><span>movie</span><span>&quot;</span><span>:
+         </span><span>print</span><span> </span><span>&quot;</span><span>*****Movie*****</span><span>&quot;</span><span>
+         </span><span>title</span><span> = </span><span>attributes</span><span>[</span><span>&quot;</span><span>title</span><span>&quot;</span><span>]</span><span>
+         </span><span>print</span><span> </span><span>&quot;</span><span>Title:</span><span>&quot;</span><span>, </span><span>title</span><span>
+ 
+   </span><span># 元素结束事件处理</span><span>
+   </span><span>def</span><span> </span><span>endElement</span><span>(</span><span>self</span><span>, </span><span>tag</span><span>)</span><span>:
+      </span><span>if</span><span> </span><span>self</span><span>.</span><span>CurrentData</span><span> == </span><span>&quot;</span><span>type</span><span>&quot;</span><span>:
+         </span><span>print</span><span> </span><span>&quot;</span><span>Type:</span><span>&quot;</span><span>, </span><span>self</span><span>.</span><span>type</span><span>
+      </span><span>elif</span><span> </span><span>self</span><span>.</span><span>CurrentData</span><span> == </span><span>&quot;</span><span>format</span><span>&quot;</span><span>:
+         </span><span>print</span><span> </span><span>&quot;</span><span>Format:</span><span>&quot;</span><span>, </span><span>self</span><span>.</span><span>format</span><span>
+      </span><span>elif</span><span> </span><span>self</span><span>.</span><span>CurrentData</span><span> == </span><span>&quot;</span><span>year</span><span>&quot;</span><span>:
+         </span><span>print</span><span> </span><span>&quot;</span><span>Year:</span><span>&quot;</span><span>, </span><span>self</span><span>.</span><span>year</span><span>
+      </span><span>elif</span><span> </span><span>self</span><span>.</span><span>CurrentData</span><span> == </span><span>&quot;</span><span>rating</span><span>&quot;</span><span>:
+         </span><span>print</span><span> </span><span>&quot;</span><span>Rating:</span><span>&quot;</span><span>, </span><span>self</span><span>.</span><span>rating</span><span>
+      </span><span>elif</span><span> </span><span>self</span><span>.</span><span>CurrentData</span><span> == </span><span>&quot;</span><span>stars</span><span>&quot;</span><span>:
+         </span><span>print</span><span> </span><span>&quot;</span><span>Stars:</span><span>&quot;</span><span>, </span><span>self</span><span>.</span><span>stars</span><span>
+      </span><span>elif</span><span> </span><span>self</span><span>.</span><span>CurrentData</span><span> == </span><span>&quot;</span><span>description</span><span>&quot;</span><span>:
+         </span><span>print</span><span> </span><span>&quot;</span><span>Description:</span><span>&quot;</span><span>, </span><span>self</span><span>.</span><span>description</span><span>
+      </span><span>self</span><span>.</span><span>CurrentData</span><span> = </span><span>&quot;</span><span>&quot;</span><span>
+ 
+   </span><span># 内容事件处理</span><span>
+   </span><span>def</span><span> </span><span>characters</span><span>(</span><span>self</span><span>, </span><span>content</span><span>)</span><span>:
+      </span><span>if</span><span> </span><span>self</span><span>.</span><span>CurrentData</span><span> == </span><span>&quot;</span><span>type</span><span>&quot;</span><span>:
+         </span><span>self</span><span>.</span><span>type</span><span> = </span><span>content</span><span>
+      </span><span>elif</span><span> </span><span>self</span><span>.</span><span>CurrentData</span><span> == </span><span>&quot;</span><span>format</span><span>&quot;</span><span>:
+         </span><span>self</span><span>.</span><span>format</span><span> = </span><span>content</span><span>
+      </span><span>elif</span><span> </span><span>self</span><span>.</span><span>CurrentData</span><span> == </span><span>&quot;</span><span>year</span><span>&quot;</span><span>:
+         </span><span>self</span><span>.</span><span>year</span><span> = </span><span>content</span><span>
+      </span><span>elif</span><span> </span><span>self</span><span>.</span><span>CurrentData</span><span> == </span><span>&quot;</span><span>rating</span><span>&quot;</span><span>:
+         </span><span>self</span><span>.</span><span>rating</span><span> = </span><span>content</span><span>
+      </span><span>elif</span><span> </span><span>self</span><span>.</span><span>CurrentData</span><span> == </span><span>&quot;</span><span>stars</span><span>&quot;</span><span>:
+         </span><span>self</span><span>.</span><span>stars</span><span> = </span><span>content</span><span>
+      </span><span>elif</span><span> </span><span>self</span><span>.</span><span>CurrentData</span><span> == </span><span>&quot;</span><span>description</span><span>&quot;</span><span>:
+         </span><span>self</span><span>.</span><span>description</span><span> = </span><span>content</span><span>
+  
+</span><span>if</span><span> </span><span>(</span><span> </span><span>__name__</span><span> == </span><span>&quot;</span><span>__main__</span><span>&quot;</span><span>)</span><span>:
+   
+   </span><span># 创建一个 XMLReader</span><span>
+   </span><span>parser</span><span> = </span><span>xml</span><span>.</span><span>sax</span><span>.</span><span>make_parser</span><span>(</span><span>)</span><span>
+   </span><span># turn off namepsaces</span><span>
+   </span><span>parser</span><span>.</span><span>setFeature</span><span>(</span><span>xml</span><span>.</span><span>sax</span><span>.</span><span>handler</span><span>.</span><span>feature_namespaces</span><span>, </span><span>0</span><span>)</span><span>
+ 
+   </span><span># 重写 ContextHandler</span><span>
+   </span><span>Handler</span><span> = </span><span>MovieHandler</span><span>(</span><span>)</span><span>
+   </span><span>parser</span><span>.</span><span>setContentHandler</span><span>(</span><span> </span><span>Handler</span><span> </span><span>)</span><span>
+   
+   </span><span>parser</span><span>.</span><span>parse</span><span>(</span><span>&quot;</span><span>movies.xml</span><span>&quot;</span><span>)</span></div></div></div><p>以上代码执行结果如下：</p><pre><span>*****</span><span>Movie</span><span>*****</span><span>
+</span><span>Title</span><span>:</span><span> </span><span>Enemy</span><span> </span><span>Behind</span><span>
+</span><span>Type</span><span>:</span><span> </span><span>War</span><span>,</span><span> </span><span>Thriller</span><span>
+</span><span>Format</span><span>:</span><span> DVD
+</span><span>Year</span><span>:</span><span> </span><span>2003</span><span>
+</span><span>Rating</span><span>:</span><span> PG
+</span><span>Stars</span><span>:</span><span> </span><span>10</span><span>
+</span><span>Description</span><span>:</span><span> </span><span>Talk</span><span> about a US</span><span>-</span><span>Japan</span><span> war
+</span><span>*****</span><span>Movie</span><span>*****</span><span>
+</span><span>Title</span><span>:</span><span> </span><span>Transformers</span><span>
+</span><span>Type</span><span>:</span><span> </span><span>Anime</span><span>,</span><span> </span><span>Science</span><span> </span><span>Fiction</span><span>
+</span><span>Format</span><span>:</span><span> DVD
+</span><span>Year</span><span>:</span><span> </span><span>1989</span><span>
+</span><span>Rating</span><span>:</span><span> R
+</span><span>Stars</span><span>:</span><span> </span><span>8</span><span>
+</span><span>Description</span><span>:</span><span> A schientific fiction
+</span><span>*****</span><span>Movie</span><span>*****</span><span>
+</span><span>Title</span><span>:</span><span> </span><span>Trigun</span><span>
+</span><span>Type</span><span>:</span><span> </span><span>Anime</span><span>,</span><span> </span><span>Action</span><span>
+</span><span>Format</span><span>:</span><span> DVD
+</span><span>Rating</span><span>:</span><span> PG
+</span><span>Stars</span><span>:</span><span> </span><span>10</span><span>
+</span><span>Description</span><span>:</span><span> </span><span>Vash</span><span> the </span><span>Stampede</span><span>!</span><span>
+</span><span>*****</span><span>Movie</span><span>*****</span><span>
+</span><span>Title</span><span>:</span><span> </span><span>Ishtar</span><span>
+</span><span>Type</span><span>:</span><span> </span><span>Comedy</span><span>
+</span><span>Format</span><span>:</span><span> VHS
+</span><span>Rating</span><span>:</span><span> PG
+</span><span>Stars</span><span>:</span><span> </span><span>2</span><span>
+</span><span>Description</span><span>:</span><span> </span><span>Viewable</span><span> boredom</span></pre><p>完整的 SAX API 文档请查阅<a href="http://docs.python.org/library/xml.sax.html" rel="nofollow" shape="rect" target="_blank">Python SAX APIs</a></p><hr/><h2>使用xml.dom解析xml</h2><p>文件对象模型（Document Object Model，简称DOM），是W3C组织推荐的处理可扩展置标语言的标准编程接口。</p><p>一个 DOM 的解析器在解析一个 XML 文档时，一次性读取整个文档，把文档中所有元素保存在内存中的一个树结构里，之后你可以利用DOM 提供的不同的函数来读取或修改文档的内容和结构，也可以把修改过的内容写入xml文件。</p><p>python中用xml.dom.minidom来解析xml文件，实例如下：</p><div><h2>实例</h2><div><div><span>#!/usr/bin/python</span><span>
+</span><span># -*- coding: UTF-8 -*-</span><span>
+ 
+</span><span>from</span><span> </span><span>xml</span><span>.</span><span>dom</span><span>.</span><span>minidom</span><span> </span><span>import</span><span> </span><span>parse</span><span>
+</span><span>import</span><span> </span><span>xml</span><span>.</span><span>dom</span><span>.</span><span>minidom</span><span>
+ 
+</span><span># 使用minidom解析器打开 XML 文档</span><span>
+</span><span>DOMTree</span><span> = </span><span>xml</span><span>.</span><span>dom</span><span>.</span><span>minidom</span><span>.</span><span>parse</span><span>(</span><span>&quot;</span><span>movies.xml</span><span>&quot;</span><span>)</span><span>
+</span><span>collection</span><span> = </span><span>DOMTree</span><span>.</span><span>documentElement</span><span>
+</span><span>if</span><span> </span><span>collection</span><span>.</span><span>hasAttribute</span><span>(</span><span>&quot;</span><span>shelf</span><span>&quot;</span><span>)</span><span>:
+   </span><span>print</span><span> </span><span>&quot;</span><span>Root element : %s</span><span>&quot;</span><span> % </span><span>collection</span><span>.</span><span>getAttribute</span><span>(</span><span>&quot;</span><span>shelf</span><span>&quot;</span><span>)</span><span>
+ 
+</span><span># 在集合中获取所有电影</span><span>
+</span><span>movies</span><span> = </span><span>collection</span><span>.</span><span>getElementsByTagName</span><span>(</span><span>&quot;</span><span>movie</span><span>&quot;</span><span>)</span><span>
+ 
+</span><span># 打印每部电影的详细信息</span><span>
+</span><span>for</span><span> </span><span>movie</span><span> </span><span>in</span><span> </span><span>movies</span><span>:
+   </span><span>print</span><span> </span><span>&quot;</span><span>*****Movie*****</span><span>&quot;</span><span>
+   </span><span>if</span><span> </span><span>movie</span><span>.</span><span>hasAttribute</span><span>(</span><span>&quot;</span><span>title</span><span>&quot;</span><span>)</span><span>:
+      </span><span>print</span><span> </span><span>&quot;</span><span>Title: %s</span><span>&quot;</span><span> % </span><span>movie</span><span>.</span><span>getAttribute</span><span>(</span><span>&quot;</span><span>title</span><span>&quot;</span><span>)</span><span>
+ 
+   </span><span>type</span><span> = </span><span>movie</span><span>.</span><span>getElementsByTagName</span><span>(</span><span>'</span><span>type</span><span>'</span><span>)</span><span>[</span><span>0</span><span>]</span><span>
+   </span><span>print</span><span> </span><span>&quot;</span><span>Type: %s</span><span>&quot;</span><span> % </span><span>type</span><span>.</span><span>childNodes</span><span>[</span><span>0</span><span>]</span><span>.</span><span>data</span><span>
+   </span><span>format</span><span> = </span><span>movie</span><span>.</span><span>getElementsByTagName</span><span>(</span><span>'</span><span>format</span><span>'</span><span>)</span><span>[</span><span>0</span><span>]</span><span>
+   </span><span>print</span><span> </span><span>&quot;</span><span>Format: %s</span><span>&quot;</span><span> % </span><span>format</span><span>.</span><span>childNodes</span><span>[</span><span>0</span><span>]</span><span>.</span><span>data</span><span>
+   </span><span>rating</span><span> = </span><span>movie</span><span>.</span><span>getElementsByTagName</span><span>(</span><span>'</span><span>rating</span><span>'</span><span>)</span><span>[</span><span>0</span><span>]</span><span>
+   </span><span>print</span><span> </span><span>&quot;</span><span>Rating: %s</span><span>&quot;</span><span> % </span><span>rating</span><span>.</span><span>childNodes</span><span>[</span><span>0</span><span>]</span><span>.</span><span>data</span><span>
+   </span><span>description</span><span> = </span><span>movie</span><span>.</span><span>getElementsByTagName</span><span>(</span><span>'</span><span>description</span><span>'</span><span>)</span><span>[</span><span>0</span><span>]</span><span>
+   </span><span>print</span><span> </span><span>&quot;</span><span>Description: %s</span><span>&quot;</span><span> % </span><span>description</span><span>.</span><span>childNodes</span><span>[</span><span>0</span><span>]</span><span>.</span><span>data</span></div></div></div><p>以上程序执行结果如下：</p><pre><span>Root</span><span> element </span><span>:</span><span> </span><span>New</span><span> </span><span>Arrivals</span><span>
+</span><span>*****</span><span>Movie</span><span>*****</span><span>
+</span><span>Title</span><span>:</span><span> </span><span>Enemy</span><span> </span><span>Behind</span><span>
+</span><span>Type</span><span>:</span><span> </span><span>War</span><span>,</span><span> </span><span>Thriller</span><span>
+</span><span>Format</span><span>:</span><span> DVD
+</span><span>Rating</span><span>:</span><span> PG
+</span><span>Description</span><span>:</span><span> </span><span>Talk</span><span> about a US</span><span>-</span><span>Japan</span><span> war
+</span><span>*****</span><span>Movie</span><span>*****</span><span>
+</span><span>Title</span><span>:</span><span> </span><span>Transformers</span><span>
+</span><span>Type</span><span>:</span><span> </span><span>Anime</span><span>,</span><span> </span><span>Science</span><span> </span><span>Fiction</span><span>
+</span><span>Format</span><span>:</span><span> DVD
+</span><span>Rating</span><span>:</span><span> R
+</span><span>Description</span><span>:</span><span> A schientific fiction
+</span><span>*****</span><span>Movie</span><span>*****</span><span>
+</span><span>Title</span><span>:</span><span> </span><span>Trigun</span><span>
+</span><span>Type</span><span>:</span><span> </span><span>Anime</span><span>,</span><span> </span><span>Action</span><span>
+</span><span>Format</span><span>:</span><span> DVD
+</span><span>Rating</span><span>:</span><span> PG
+</span><span>Description</span><span>:</span><span> </span><span>Vash</span><span> the </span><span>Stampede</span><span>!</span><span>
+</span><span>*****</span><span>Movie</span><span>*****</span><span>
+</span><span>Title</span><span>:</span><span> </span><span>Ishtar</span><span>
+</span><span>Type</span><span>:</span><span> </span><span>Comedy</span><span>
+</span><span>Format</span><span>:</span><span> VHS
+</span><span>Rating</span><span>:</span><span> PG
+</span><span>Description</span><span>:</span><span> </span><span>Viewable</span><span> boredom</span></pre><br clear="none"/></div></span>
+</div></body></html> 
