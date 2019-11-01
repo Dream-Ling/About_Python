@@ -1,0 +1,138 @@
+<html>
+<head>
+  <title>Python 异常处理</title>
+  <basefont face="微软雅黑" size="2" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="exporter-version" content="YXBJ Windows/600753 (zh-CN, DDL); Windows/6.1.1 (Win64);"/>
+  <style>
+    body, td {
+      font-family: 微软雅黑;
+      font-size: 10pt;
+    }
+  </style>
+</head>
+<body>
+<a name="4333"/>
+<h1>Python 异常处理</h1>
+<div>
+<table bgcolor="#D4DDE5" border="0">
+<tr><td><b>作者：</b></td><td><i>凌小康</i></td></tr>
+</table>
+</div>
+<br/>
+
+<div>
+<span><div><h1>Python 异常处理</h1><p>python提供了两个非常重要的功能来处理python程序在运行中出现的异常和错误。你可以使用该功能来调试python程序。</p><ul><li>异常处理: 本站Python教程会具体介绍。</li><li>断言(Assertions):本站Python教程会具体介绍。</li></ul><hr/><h2>python标准异常</h2><table><tr><th colspan="1" rowspan="1">异常名称</th><th colspan="1" rowspan="1">描述</th></tr><tr></tr><tr><td colspan="1" rowspan="1">BaseException</td><td colspan="1" rowspan="1">所有异常的基类</td></tr><tr><td colspan="1" rowspan="1">SystemExit</td><td colspan="1" rowspan="1">解释器请求退出</td></tr><tr><td colspan="1" rowspan="1">KeyboardInterrupt</td><td colspan="1" rowspan="1">用户中断执行(通常是输入^C)</td></tr><tr><td colspan="1" rowspan="1">Exception</td><td colspan="1" rowspan="1">常规错误的基类</td></tr><tr><td colspan="1" rowspan="1">StopIteration</td><td colspan="1" rowspan="1">迭代器没有更多的值</td></tr><tr><td colspan="1" rowspan="1">GeneratorExit</td><td colspan="1" rowspan="1">生成器(generator)发生异常来通知退出</td></tr><tr><td colspan="1" rowspan="1">StandardError</td><td colspan="1" rowspan="1">所有的内建标准异常的基类</td></tr><tr><td colspan="1" rowspan="1">ArithmeticError</td><td colspan="1" rowspan="1">所有数值计算错误的基类</td></tr><tr><td colspan="1" rowspan="1">FloatingPointError</td><td colspan="1" rowspan="1">浮点计算错误</td></tr><tr><td colspan="1" rowspan="1">OverflowError</td><td colspan="1" rowspan="1">数值运算超出最大限制</td></tr><tr><td colspan="1" rowspan="1">ZeroDivisionError</td><td colspan="1" rowspan="1">除(或取模)零 (所有数据类型)</td></tr><tr><td colspan="1" rowspan="1">AssertionError</td><td colspan="1" rowspan="1">断言语句失败</td></tr><tr><td colspan="1" rowspan="1">AttributeError</td><td colspan="1" rowspan="1">对象没有这个属性</td></tr><tr><td colspan="1" rowspan="1">EOFError</td><td colspan="1" rowspan="1">没有内建输入,到达EOF 标记</td></tr><tr><td colspan="1" rowspan="1">EnvironmentError</td><td colspan="1" rowspan="1">操作系统错误的基类</td></tr><tr><td colspan="1" rowspan="1">IOError</td><td colspan="1" rowspan="1">输入/输出操作失败</td></tr><tr><td colspan="1" rowspan="1">OSError</td><td colspan="1" rowspan="1">操作系统错误</td></tr><tr><td colspan="1" rowspan="1">WindowsError</td><td colspan="1" rowspan="1">系统调用失败</td></tr><tr><td colspan="1" rowspan="1">ImportError</td><td colspan="1" rowspan="1">导入模块/对象失败</td></tr><tr><td colspan="1" rowspan="1">LookupError</td><td colspan="1" rowspan="1">无效数据查询的基类</td></tr><tr><td colspan="1" rowspan="1">IndexError</td><td colspan="1" rowspan="1">序列中没有此索引(index)</td></tr><tr><td colspan="1" rowspan="1">KeyError</td><td colspan="1" rowspan="1">映射中没有这个键</td></tr><tr><td colspan="1" rowspan="1">MemoryError</td><td colspan="1" rowspan="1">内存溢出错误(对于Python 解释器不是致命的)</td></tr><tr><td colspan="1" rowspan="1">NameError</td><td colspan="1" rowspan="1">未声明/初始化对象 (没有属性)</td></tr><tr><td colspan="1" rowspan="1">UnboundLocalError</td><td colspan="1" rowspan="1">访问未初始化的本地变量</td></tr><tr><td colspan="1" rowspan="1">ReferenceError</td><td colspan="1" rowspan="1">弱引用(Weak reference)试图访问已经垃圾回收了的对象</td></tr><tr><td colspan="1" rowspan="1">RuntimeError</td><td colspan="1" rowspan="1">一般的运行时错误</td></tr><tr><td colspan="1" rowspan="1">NotImplementedError</td><td colspan="1" rowspan="1">尚未实现的方法</td></tr><tr><td colspan="1" rowspan="1">SyntaxError</td><td colspan="1" rowspan="1">Python 语法错误</td></tr><tr><td colspan="1" rowspan="1">IndentationError</td><td colspan="1" rowspan="1">缩进错误</td></tr><tr><td colspan="1" rowspan="1">TabError</td><td colspan="1" rowspan="1">Tab 和空格混用</td></tr><tr><td colspan="1" rowspan="1">SystemError</td><td colspan="1" rowspan="1">一般的解释器系统错误</td></tr><tr><td colspan="1" rowspan="1">TypeError</td><td colspan="1" rowspan="1">对类型无效的操作</td></tr><tr><td colspan="1" rowspan="1">ValueError</td><td colspan="1" rowspan="1">传入无效的参数</td></tr><tr><td colspan="1" rowspan="1">UnicodeError</td><td colspan="1" rowspan="1">Unicode 相关的错误</td></tr><tr><td colspan="1" rowspan="1">UnicodeDecodeError</td><td colspan="1" rowspan="1">Unicode 解码时的错误</td></tr><tr><td colspan="1" rowspan="1">UnicodeEncodeError</td><td colspan="1" rowspan="1">Unicode 编码时错误</td></tr><tr><td colspan="1" rowspan="1">UnicodeTranslateError</td><td colspan="1" rowspan="1">Unicode 转换时错误</td></tr><tr><td colspan="1" rowspan="1">Warning</td><td colspan="1" rowspan="1">警告的基类</td></tr><tr><td colspan="1" rowspan="1">DeprecationWarning</td><td colspan="1" rowspan="1">关于被弃用的特征的警告</td></tr><tr><td colspan="1" rowspan="1">FutureWarning</td><td colspan="1" rowspan="1">关于构造将来语义会有改变的警告</td></tr><tr><td colspan="1" rowspan="1">OverflowWarning</td><td colspan="1" rowspan="1">旧的关于自动提升为长整型(long)的警告</td></tr><tr><td colspan="1" rowspan="1">PendingDeprecationWarning</td><td colspan="1" rowspan="1">关于特性将会被废弃的警告</td></tr><tr><td colspan="1" rowspan="1">RuntimeWarning</td><td colspan="1" rowspan="1">可疑的运行时行为(runtime behavior)的警告</td></tr><tr><td colspan="1" rowspan="1">SyntaxWarning</td><td colspan="1" rowspan="1">可疑的语法的警告</td></tr><tr><td colspan="1" rowspan="1">UserWarning</td><td colspan="1" rowspan="1">用户代码生成的警告</td></tr></table><h2>什么是异常？</h2><p>异常即是一个事件，该事件会在程序执行过程中发生，影响了程序的正常执行。</p><p>一般情况下，在Python无法正常处理程序时就会发生一个异常。</p><p>异常是Python对象，表示一个错误。</p><p>当Python脚本发生异常时我们需要捕获处理它，否则程序会终止执行。</p><hr/><h2>异常处理</h2><p>捕捉异常可以使用try/except语句。</p><p>try/except语句用来检测try语句块中的错误，从而让except语句捕获异常信息并处理。</p><p>如果你不想在异常发生时结束你的程序，只需在try里捕获它。</p><p>语法：</p><p>以下为简单的<em>try....except...else</em>的语法：</p><pre><span>try</span><span>:</span><span>
+</span><span>&lt;语句&gt;</span><span>        </span><span>#运行别的代码</span><span>
+</span><span>except</span><span> </span><span>&lt;名字&gt;：</span><span>
+</span><span>&lt;语句&gt;</span><span>        </span><span>#如果在try部份引发了'name'异常</span><span>
+</span><span>except</span><span> </span><span>&lt;名字&gt;，&lt;数据&gt;:</span><span>
+</span><span>&lt;语句&gt;</span><span>        </span><span>#如果引发了'name'异常，获得附加的数据</span><span>
+</span><span>else</span><span>:</span><span>
+</span><span>&lt;语句&gt;</span><span>        </span><span>#如果没有异常发生</span></pre><p>try的工作原理是，当开始一个try语句后，python就在当前程序的上下文中作标记，这样当异常出现时就可以回到这里，try子句先执行，接下来会发生什么依赖于执行时是否出现异常。</p><ul><li>如果当try后的语句执行时发生异常，python就跳回到try并执行第一个匹配该异常的except子句，异常处理完毕，控制流就通过整个try语句（除非在处理异常时又引发新的异常）。</li><li>如果在try后的语句里发生了异常，却没有匹配的except子句，异常将被递交到上层的try，或者到程序的最上层（这样将结束程序，并打印缺省的出错信息）。</li><li>如果在try子句执行时没有发生异常，python将执行else语句后的语句（如果有else的话），然后控制流通过整个try语句。</li></ul><h3>实例</h3><p>下面是简单的例子，它打开一个文件，在该文件中的内容写入内容，且并未发生异常：</p><pre><span>#!/usr/bin/python</span><span>
+</span><span># -*- coding: UTF-8 -*-</span><span>
+
+</span><span>try</span><span>:</span><span>
+    fh </span><span>=</span><span> open</span><span>(</span><span>&quot;testfile&quot;</span><span>,</span><span> </span><span>&quot;w&quot;</span><span>)</span><span>
+    fh</span><span>.</span><span>write</span><span>(</span><span>&quot;这是一个测试文件，用于测试异常!!&quot;</span><span>)</span><span>
+</span><span>except</span><span> </span><span>IOError</span><span>:</span><span>
+    </span><span>print</span><span> </span><span>&quot;Error: 没有找到文件或读取文件失败&quot;</span><span>
+</span><span>else</span><span>:</span><span>
+    </span><span>print</span><span> </span><span>&quot;内容写入文件成功&quot;</span><span>
+    fh</span><span>.</span><span>close</span><span>()</span></pre><p>以上程序输出结果：</p><pre><span>$ python test</span><span>.</span><span>py 
+</span><span>内容写入文件成功</span><span>
+$ cat testfile       </span><span># 查看写入的内容</span><span>
+</span><span>这是一个测试文件，用于测试异常!!</span></pre><h3>实例</h3><p>下面是简单的例子，它打开一个文件，在该文件中的内容写入内容，但文件没有写入权限，发生了异常：</p><pre><span>#!/usr/bin/python</span><span>
+</span><span># -*- coding: UTF-8 -*-</span><span>
+
+</span><span>try</span><span>:</span><span>
+    fh </span><span>=</span><span> open</span><span>(</span><span>&quot;testfile&quot;</span><span>,</span><span> </span><span>&quot;w&quot;</span><span>)</span><span>
+    fh</span><span>.</span><span>write</span><span>(</span><span>&quot;这是一个测试文件，用于测试异常!!&quot;</span><span>)</span><span>
+</span><span>except</span><span> </span><span>IOError</span><span>:</span><span>
+    </span><span>print</span><span> </span><span>&quot;Error: 没有找到文件或读取文件失败&quot;</span><span>
+</span><span>else</span><span>:</span><span>
+    </span><span>print</span><span> </span><span>&quot;内容写入文件成功&quot;</span><span>
+    fh</span><span>.</span><span>close</span><span>()</span></pre><p>在执行代码前为了测试方便，我们可以先去掉 testfile 文件的写权限，命令如下：</p><pre><span>chmod </span><span>-</span><span>w testfile</span></pre><p>再执行以上代码：</p><pre><span>$ python test</span><span>.</span><span>py 
+</span><span>Error</span><span>:</span><span> </span><span>没有找到文件或读取文件失败</span></pre><hr/><h2>使用except而不带任何异常类型</h2><h2></h2><p>你可以不带任何异常类型使用except，如下实例：</p><pre><span>try</span><span>:</span><span>
+    </span><span>正常的操作</span><span>
+   </span><span>......................</span><span>
+</span><span>except</span><span>:</span><span>
+    </span><span>发生异常，执行这块代码</span><span>
+   </span><span>......................</span><span>
+</span><span>else</span><span>:</span><span>
+    </span><span>如果没有异常执行这块代码</span></pre><p>以上方式try-except语句捕获所有发生的异常。但这不是一个很好的方式，我们不能通过该程序识别出具体的异常信息。因为它捕获所有的异常。</p><hr/><h2>使用except而带多种异常类型</h2><p>你也可以使用相同的except语句来处理多个异常信息，如下所示：</p><pre><span>try</span><span>:</span><span>
+    </span><span>正常的操作</span><span>
+   </span><span>......................</span><span>
+</span><span>except</span><span>(</span><span>Exception1</span><span>[,</span><span> </span><span>Exception2</span><span>[,...</span><span>ExceptionN</span><span>]]]):</span><span>
+   </span><span>发生以上多个异常中的一个，执行这块代码</span><span>
+   </span><span>......................</span><span>
+</span><span>else</span><span>:</span><span>
+    </span><span>如果没有异常执行这块代码</span></pre><hr/><h2>try-finally 语句</h2><p>try-finally 语句无论是否发生异常都将执行最后的代码。</p><pre><span>try</span><span>:</span><span>
+</span><span>&lt;语句&gt;</span><span>
+</span><span>finally</span><span>:</span><span>
+</span><span>&lt;语句&gt;</span><span>    </span><span>#退出try时总会执行</span><span>
+</span><span>raise</span></pre><h3>实例</h3><pre><span>#!/usr/bin/python</span><span>
+</span><span># -*- coding: UTF-8 -*-</span><span>
+
+</span><span>try</span><span>:</span><span>
+    fh </span><span>=</span><span> open</span><span>(</span><span>&quot;testfile&quot;</span><span>,</span><span> </span><span>&quot;w&quot;</span><span>)</span><span>
+    fh</span><span>.</span><span>write</span><span>(</span><span>&quot;这是一个测试文件，用于测试异常!!&quot;</span><span>)</span><span>
+</span><span>finally</span><span>:</span><span>
+    </span><span>print</span><span> </span><span>&quot;Error: 没有找到文件或读取文件失败&quot;</span></pre><p>如果打开的文件没有可写权限，输出如下所示：</p><pre><span>$ python test</span><span>.</span><span>py 
+</span><span>Error</span><span>:</span><span> </span><span>没有找到文件或读取文件失败</span></pre><p>同样的例子也可以写成如下方式：</p><pre><span>#!/usr/bin/python</span><span>
+</span><span># -*- coding: UTF-8 -*-</span><span>
+
+</span><span>try</span><span>:</span><span>
+    fh </span><span>=</span><span> open</span><span>(</span><span>&quot;testfile&quot;</span><span>,</span><span> </span><span>&quot;w&quot;</span><span>)</span><span>
+    </span><span>try</span><span>:</span><span>
+        fh</span><span>.</span><span>write</span><span>(</span><span>&quot;这是一个测试文件，用于测试异常!!&quot;</span><span>)</span><span>
+    </span><span>finally</span><span>:</span><span>
+        </span><span>print</span><span> </span><span>&quot;关闭文件&quot;</span><span>
+        fh</span><span>.</span><span>close</span><span>()</span><span>
+</span><span>except</span><span> </span><span>IOError</span><span>:</span><span>
+    </span><span>print</span><span> </span><span>&quot;Error: 没有找到文件或读取文件失败&quot;</span></pre><p>当在try块中抛出一个异常，立即执行finally块代码。</p><p>finally块中的所有语句执行后，异常被再次触发，并执行except块代码。</p><p>参数的内容不同于异常。</p><hr/><h2>异常的参数</h2><p>一个异常可以带上参数，可作为输出的异常信息参数。</p><p>你可以通过except语句来捕获异常的参数，如下所示：</p><pre><span>try</span><span>:</span><span>
+    </span><span>正常的操作</span><span>
+   </span><span>......................</span><span>
+</span><span>except</span><span> </span><span>ExceptionType</span><span>,</span><span> </span><span>Argument</span><span>:</span><span>
+    </span><span>你可以在这输出</span><span> </span><span>Argument</span><span> </span><span>的值...</span></pre><p>变量接收的异常值通常包含在异常的语句中。在元组的表单中变量可以接收一个或者多个值。</p><p>元组通常包含错误字符串，错误数字，错误位置。</p><h3>实例</h3><p>以下为单个异常的实例：</p><pre><span>#!/usr/bin/python</span><span>
+</span><span># -*- coding: UTF-8 -*-</span><span>
+
+</span><span># 定义函数</span><span>
+</span><span>def</span><span> temp_convert</span><span>(</span><span>var</span><span>):</span><span>
+    </span><span>try</span><span>:</span><span>
+        </span><span>return</span><span> </span><span>int</span><span>(</span><span>var</span><span>)</span><span>
+    </span><span>except</span><span> </span><span>ValueError</span><span>,</span><span> </span><span>Argument</span><span>:</span><span>
+        </span><span>print</span><span> </span><span>&quot;参数没有包含数字\n&quot;</span><span>,</span><span> </span><span>Argument</span><span>
+
+</span><span># 调用函数</span><span>
+temp_convert</span><span>(</span><span>&quot;xyz&quot;</span><span>);</span></pre><p>以上程序执行结果如下：</p><pre><span>$ python test</span><span>.</span><span>py 
+</span><span>参数没有包含数字</span><span>
+invalid literal </span><span>for</span><span> </span><span>int</span><span>()</span><span> </span><span>with</span><span> </span><span>base</span><span> </span><span>10</span><span>:</span><span> </span><span>'xyz'</span></pre><hr/><h3>触发异常</h3><p>我们可以使用raise语句自己触发异常</p><p>raise语法格式如下：</p><pre><span>raise</span><span> </span><span>[</span><span>Exception</span><span> </span><span>[,</span><span> args </span><span>[,</span><span> traceback</span><span>]]]</span></pre><p>语句中 Exception 是异常的类型（例如，NameError）参数标准异常中任一种，args 是自已提供的异常参数。</p><p>最后一个参数是可选的（在实践中很少使用），如果存在，是跟踪异常对象。</p><h3>实例</h3><p>一个异常可以是一个字符串，类或对象。 Python的内核提供的异常，大多数都是实例化的类，这是一个类的实例的参数。</p><p>定义一个异常非常简单，如下所示：</p><pre><span>def</span><span> functionName</span><span>(</span><span> level </span><span>):</span><span>
+    </span><span>if</span><span> level </span><span>&lt;</span><span> </span><span>1</span><span>:</span><span>
+        </span><span>raise</span><span> </span><span>Exception</span><span>(</span><span>&quot;Invalid level!&quot;</span><span>,</span><span> level</span><span>)</span><span>
+        </span><span># 触发异常后，后面的代码就不会再执行</span></pre><p><strong>注意：</strong>为了能够捕获异常，&quot;except&quot;语句必须有用相同的异常来抛出类对象或者字符串。</p><p>例如我们捕获以上异常，&quot;except&quot;语句如下所示：</p><pre><span>try</span><span>:</span><span>
+    </span><span>正常逻辑</span><span>
+</span><span>except</span><span> </span><span>Exception</span><span>,</span><span>err</span><span>:</span><span>
+    </span><span>触发自定义异常</span><span>    
+</span><span>else</span><span>:</span><span>
+    </span><span>其余代码</span></pre><h3>实例</h3><pre><span>#!/usr/bin/python</span><span>
+</span><span># -*- coding: UTF-8 -*-</span><span>
+
+</span><span># 定义函数</span><span>
+</span><span>def</span><span> mye</span><span>(</span><span> level </span><span>):</span><span>
+    </span><span>if</span><span> level </span><span>&lt;</span><span> </span><span>1</span><span>:</span><span>
+        </span><span>raise</span><span> </span><span>Exception</span><span>,</span><span>&quot;Invalid level!&quot;</span><span>
+        </span><span># 触发异常后，后面的代码就不会再执行</span><span>
+</span><span>try</span><span>:</span><span>
+    mye</span><span>(</span><span>0</span><span>)</span><span>            </span><span># 触发异常</span><span>
+</span><span>except</span><span> </span><span>Exception</span><span>,</span><span>err</span><span>:</span><span>
+    </span><span>print</span><span> </span><span>1</span><span>,</span><span>err
+</span><span>else</span><span>:</span><span>
+    </span><span>print</span><span> </span><span>2</span></pre><p>执行以上代码，输出结果为：</p><pre><span>$ python test</span><span>.</span><span>py 
+</span><span>1</span><span> </span><span>Invalid</span><span> level</span><span>!</span></pre><hr/><h2>用户自定义异常</h2><p>通过创建一个新的异常类，程序可以命名它们自己的异常。异常应该是典型的继承自Exception类，通过直接或间接的方式。</p><p>以下为与RuntimeError相关的实例,实例中创建了一个类，基类为RuntimeError，用于在异常触发时输出更多的信息。</p><p>在try语句块中，用户自定义的异常后执行except块语句，变量 e 是用于创建Networkerror类的实例。</p><pre><span>class</span><span> </span><span>Networkerror</span><span>(</span><span>RuntimeError</span><span>):</span><span>
+    </span><span>def</span><span> __init__</span><span>(</span><span>self</span><span>,</span><span> arg</span><span>):</span><span>
+        </span><span>self</span><span>.</span><span>args </span><span>=</span><span> arg</span></pre><p>在你定义以上类后，你可以触发该异常，如下所示：</p><pre><span>try</span><span>:</span><span>
+    </span><span>raise</span><span> </span><span>Networkerror</span><span>(</span><span>&quot;Bad hostname&quot;</span><span>)</span><span>
+</span><span>except</span><span> </span><span>Networkerror</span><span>,</span><span>e</span><span>:</span><span>
+    </span><span>print</span><span> e</span><span>.</span><span>args</span></pre><br clear="none"/></div></span>
+</div></body></html> 
