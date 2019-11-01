@@ -1,0 +1,55 @@
+<html>
+<head>
+  <title>Python 网络编程</title>
+  <basefont face="微软雅黑" size="2" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="exporter-version" content="YXBJ Windows/600753 (zh-CN, DDL); Windows/6.1.1 (Win64);"/>
+  <style>
+    body, td {
+      font-family: 微软雅黑;
+      font-size: 10pt;
+    }
+  </style>
+</head>
+<body>
+<a name="4315"/>
+<h1>Python 网络编程</h1>
+<div>
+<table bgcolor="#D4DDE5" border="0">
+<tr><td><b>作者：</b></td><td><i>凌小康</i></td></tr>
+</table>
+</div>
+<br/>
+
+<div>
+<span><div><h1>Python 网络编程</h1><p>Python 提供了两个级别访问的网络服务。：</p><ul><li>低级别的网络服务支持基本的 Socket，它提供了标准的 BSD Sockets API，可以访问底层操作系统Socket接口的全部方法。</li><li>高级别的网络服务模块 SocketServer， 它提供了服务器中心类，可以简化网络服务器的开发。</li></ul><hr/><h2>什么是 Socket?</h2><p>Socket又称&quot;套接字&quot;，应用程序通常通过&quot;套接字&quot;向网络发出请求或者应答网络请求，使主机间或者一台计算机上的进程间可以通讯。</p><hr/><h2>socket()函数</h2><p>Python 中，我们用 socket（）函数来创建套接字，语法格式如下：</p><pre><span>socket</span><span>.</span><span>socket</span><span>([</span><span>family</span><span>[,</span><span> type</span><span>[,</span><span> proto</span><span>]]])</span></pre><h3>参数</h3><ul><li>family: 套接字家族可以使AF_UNIX或者AF_INET</li><li>type: 套接字类型可以根据是面向连接的还是非连接分为<code>SOCK_STREAM</code>或<code>SOCK_DGRAM</code></li><li>protocol: 一般不填默认为0.</li></ul><h3>Socket 对象(内建)方法</h3><table><thead><tr><th colspan="1" rowspan="1">函数</th><th colspan="1" rowspan="1">描述</th></tr></thead><tr><td colspan="2" rowspan="1">服务器端套接字</td></tr><tr><td colspan="1" rowspan="1">s.bind()</td><td colspan="1" rowspan="1">绑定地址（host,port）到套接字， 在AF_INET下,以元组（host,port）的形式表示地址。</td></tr><tr><td colspan="1" rowspan="1">s.listen()</td><td colspan="1" rowspan="1">开始TCP监听。backlog指定在拒绝连接之前，操作系统可以挂起的最大连接数量。该值至少为1，大部分应用程序设为5就可以了。</td></tr><tr><td colspan="1" rowspan="1">s.accept()</td><td colspan="1" rowspan="1">被动接受TCP客户端连接,(阻塞式)等待连接的到来</td></tr><tr><td colspan="2" rowspan="1">客户端套接字</td></tr><tr><td colspan="1" rowspan="1">s.connect()</td><td colspan="1" rowspan="1">主动初始化TCP服务器连接，。一般address的格式为元组（hostname,port），如果连接出错，返回socket.error错误。</td></tr><tr><td colspan="1" rowspan="1">s.connect_ex()</td><td colspan="1" rowspan="1">connect()函数的扩展版本,出错时返回出错码,而不是抛出异常</td></tr><tr><td colspan="2" rowspan="1">公共用途的套接字函数</td></tr><tr><td colspan="1" rowspan="1">s.recv()</td><td colspan="1" rowspan="1">接收TCP数据，数据以字符串形式返回，bufsize指定要接收的最大数据量。flag提供有关消息的其他信息，通常可以忽略。</td></tr><tr><td colspan="1" rowspan="1">s.send()</td><td colspan="1" rowspan="1">发送TCP数据，将string中的数据发送到连接的套接字。返回值是要发送的字节数量，该数量可能小于string的字节大小。</td></tr><tr><td colspan="1" rowspan="1">s.sendall()</td><td colspan="1" rowspan="1">完整发送TCP数据，完整发送TCP数据。将string中的数据发送到连接的套接字，但在返回之前会尝试发送所有数据。成功返回None，失败则抛出异常。</td></tr><tr><td colspan="1" rowspan="1">s.recvfrom()</td><td colspan="1" rowspan="1">接收UDP数据，与recv()类似，但返回值是（data,address）。其中data是包含接收数据的字符串，address是发送数据的套接字地址。</td></tr><tr><td colspan="1" rowspan="1">s.sendto()</td><td colspan="1" rowspan="1">发送UDP数据，将数据发送到套接字，address是形式为（ipaddr，port）的元组，指定远程地址。返回值是发送的字节数。</td></tr><tr><td colspan="1" rowspan="1">s.close()</td><td colspan="1" rowspan="1">关闭套接字</td></tr><tr><td colspan="1" rowspan="1">s.getpeername()</td><td colspan="1" rowspan="1">返回连接套接字的远程地址。返回值通常是元组（ipaddr,port）。</td></tr><tr><td colspan="1" rowspan="1">s.getsockname()</td><td colspan="1" rowspan="1">返回套接字自己的地址。通常是一个元组(ipaddr,port)</td></tr><tr><td colspan="1" rowspan="1">s.setsockopt(level,optname,value)</td><td colspan="1" rowspan="1">设置给定套接字选项的值。</td></tr><tr><td colspan="1" rowspan="1">s.getsockopt(level,optname[.buflen])</td><td colspan="1" rowspan="1">返回套接字选项的值。</td></tr><tr><td colspan="1" rowspan="1">s.settimeout(timeout)</td><td colspan="1" rowspan="1">设置套接字操作的超时期，timeout是一个浮点数，单位是秒。值为None表示没有超时期。一般，超时期应该在刚创建套接字时设置，因为它们可能用于连接的操作（如connect()）</td></tr><tr><td colspan="1" rowspan="1">s.gettimeout()</td><td colspan="1" rowspan="1">返回当前超时期的值，单位是秒，如果没有设置超时期，则返回None。</td></tr><tr><td colspan="1" rowspan="1">s.fileno()</td><td colspan="1" rowspan="1">返回套接字的文件描述符。</td></tr><tr><td colspan="1" rowspan="1">s.setblocking(flag)</td><td colspan="1" rowspan="1">如果flag为0，则将套接字设为非阻塞模式，否则将套接字设为阻塞模式（默认值）。非阻塞模式下，如果调用recv()没有发现任何数据，或send()调用无法立即发送数据，那么将引起socket.error异常。</td></tr><tr><td colspan="1" rowspan="1">s.makefile()</td><td colspan="1" rowspan="1">创建一个与该套接字相关连的文件</td></tr></table><hr/><h2>简单实例</h2><h3>服务端</h3><p>我们使用 socket 模块的 <b>socket</b> 函数来创建一个 socket 对象。socket 对象可以通过调用其他函数来设置一个 socket 服务。</p><p>现在我们可以通过调用 <b>bind(hostname, port)</b> 函数来指定服务的 <i>port(端口)</i>。</p><p>接着，我们调用 socket 对象的 <i>accept</i> 方法。该方法等待客户端的连接，并返回 <i>connection</i> 对象，表示已连接到客户端。</p><p>完整代码如下：</p><pre><span>#!/usr/bin/python</span><span>
+</span><span># -*- coding: UTF-8 -*-</span><span>
+</span><span># 文件名：server.py</span><span>
+
+</span><span>import</span><span> socket               </span><span># 导入 socket 模块</span><span>
+
+s </span><span>=</span><span> socket</span><span>.</span><span>socket</span><span>()</span><span>         </span><span># 创建 socket 对象</span><span>
+host </span><span>=</span><span> socket</span><span>.</span><span>gethostname</span><span>()</span><span> </span><span># 获取本地主机名</span><span>
+port </span><span>=</span><span> </span><span>12345</span><span>                </span><span># 设置端口</span><span>
+s</span><span>.</span><span>bind</span><span>((</span><span>host</span><span>,</span><span> port</span><span>))</span><span>        </span><span># 绑定端口</span><span>
+
+s</span><span>.</span><span>listen</span><span>(</span><span>5</span><span>)</span><span>                 </span><span># 等待客户端连接</span><span>
+</span><span>while</span><span> </span><span>True</span><span>:</span><span>
+    c</span><span>,</span><span> addr </span><span>=</span><span> s</span><span>.</span><span>accept</span><span>()</span><span>     </span><span># 建立客户端连接。</span><span>
+    </span><span>print</span><span> </span><span>'连接地址：'</span><span>,</span><span> addr
+    c</span><span>.</span><span>send</span><span>(</span><span>'欢迎访问菜鸟教程！'</span><span>)</span><span>
+    c</span><span>.</span><span>close</span><span>()</span><span>                </span><span># 关闭连接</span></pre><h3>客户端</h3><p>接下来我们写一个简单的客户端实例连接到以上创建的服务。端口号为 12345。</p><p><b>socket.connect(hosname, port )</b> 方法打开一个 TCP 连接到主机为 <i>hostname</i> 端口为 <i>port</i> 的服务商。连接后我们就可以从服务端获取数据，记住，操作完成后需要关闭连接。</p><p>完整代码如下：</p><pre><span>#!/usr/bin/python</span><span>
+</span><span># -*- coding: UTF-8 -*-</span><span>
+</span><span># 文件名：client.py</span><span>
+
+</span><span>import</span><span> socket               </span><span># 导入 socket 模块</span><span>
+
+s </span><span>=</span><span> socket</span><span>.</span><span>socket</span><span>()</span><span>         </span><span># 创建 socket 对象</span><span>
+host </span><span>=</span><span> socket</span><span>.</span><span>gethostname</span><span>()</span><span> </span><span># 获取本地主机名</span><span>
+port </span><span>=</span><span> </span><span>12345</span><span>                </span><span># 设置端口号</span><span>
+
+s</span><span>.</span><span>connect</span><span>((</span><span>host</span><span>,</span><span> port</span><span>))</span><span>
+</span><span>print</span><span> s</span><span>.</span><span>recv</span><span>(</span><span>1024</span><span>)</span><span>
+s</span><span>.</span><span>close</span><span>()</span><span>  </span></pre><p>现在我们打开两个终端，第一个终端执行 server.py 文件：</p><pre><span>$ python server</span><span>.</span><span>py</span></pre><p>第二个终端执行 client.py 文件：</p><pre><span>$ python client</span><span>.</span><span>py 
+</span><span>欢迎访问菜鸟教程！</span></pre><p>这时我们再打开第一个终端，就会看到有以下信息输出：</p><pre><span>连接地址：</span><span> </span><span>(</span><span>'192.168.0.118'</span><span>,</span><span> </span><span>62461</span><span>)</span></pre><hr/><h2>Python Internet 模块</h2><p>以下列出了 Python 网络编程的一些重要模块：</p><table><tr><th colspan="1" rowspan="1">协议</th><th colspan="1" rowspan="1">功能用处</th><th colspan="1" rowspan="1">端口号</th><th colspan="1" rowspan="1">Python 模块</th></tr><tr><td colspan="1" rowspan="1">HTTP</td><td colspan="1" rowspan="1">网页访问</td><td colspan="1" rowspan="1">80</td><td colspan="1" rowspan="1">httplib, urllib, xmlrpclib</td></tr><tr><td colspan="1" rowspan="1">NNTP</td><td colspan="1" rowspan="1">阅读和张贴新闻文章，俗称为&quot;帖子&quot;</td><td colspan="1" rowspan="1">119</td><td colspan="1" rowspan="1">nntplib</td></tr><tr><td colspan="1" rowspan="1">FTP</td><td colspan="1" rowspan="1">文件传输</td><td colspan="1" rowspan="1">20</td><td colspan="1" rowspan="1">ftplib, urllib</td></tr><tr><td colspan="1" rowspan="1">SMTP</td><td colspan="1" rowspan="1">发送邮件</td><td colspan="1" rowspan="1">25</td><td colspan="1" rowspan="1">smtplib</td></tr><tr><td colspan="1" rowspan="1">POP3</td><td colspan="1" rowspan="1">接收邮件</td><td colspan="1" rowspan="1">110</td><td colspan="1" rowspan="1">poplib</td></tr><tr><td colspan="1" rowspan="1">IMAP4</td><td colspan="1" rowspan="1">获取邮件</td><td colspan="1" rowspan="1">143</td><td colspan="1" rowspan="1">imaplib</td></tr><tr><td colspan="1" rowspan="1">Telnet</td><td colspan="1" rowspan="1">命令行</td><td colspan="1" rowspan="1">23</td><td colspan="1" rowspan="1">telnetlib</td></tr><tr><td colspan="1" rowspan="1">Gopher</td><td colspan="1" rowspan="1">信息查找</td><td colspan="1" rowspan="1">70</td><td colspan="1" rowspan="1">gopherlib, urllib</td></tr></table><p>更多内容可以参阅官网的 <a href="https://docs.python.org/2/library/socket.html" shape="rect" target="_blank" title="Python Socket 库">Python Socket Library and Modules</a>。</p><br clear="none"/></div></span>
+</div></body></html> 
