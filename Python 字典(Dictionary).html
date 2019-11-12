@@ -1,0 +1,80 @@
+<html>
+<head>
+  <title>Python 字典(Dictionary)</title>
+  <basefont face="微软雅黑" size="2" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="exporter-version" content="YXBJ Windows/600753 (zh-CN, DDL); Windows/6.1.1 (Win64);"/>
+  <style>
+    body, td {
+      font-family: 微软雅黑;
+      font-size: 10pt;
+    }
+  </style>
+</head>
+<body>
+<a name="4340"/>
+<h1>Python 字典(Dictionary)</h1>
+<div>
+<table bgcolor="#D4DDE5" border="0">
+<tr><td><b>作者：</b></td><td><i>凌小康</i></td></tr>
+</table>
+</div>
+<br/>
+
+<div>
+<span><div><h1>Python <span>字典(Dictionary)</span></h1><p>字典是另一种可变容器模型，且可存储任意类型对象。</p><p>字典的每个键值 <span>key=&gt;value</span> 对用冒号 <span>:</span> 分割，每个键值对之间用逗号 <span>,</span> 分割，整个字典包括在花括号 <span>{}</span> 中 ,格式如下所示：</p><div><div><div><span>d</span><span> = {</span><span>key1</span><span> : </span><span>value1</span><span>, </span><span>key2</span><span> : </span><span>value2</span><span> }</span></div></div></div><p>键一般是唯一的，如果重复最后的一个键值对会替换前面的，值不需要唯一。</p><div><div><div><span>&gt;&gt;&gt;</span><span>dict</span><span> = {</span><span>'</span><span>a</span><span>'</span><span>: </span><span>1</span><span>, </span><span>'</span><span>b</span><span>'</span><span>: </span><span>2</span><span>, </span><span>'</span><span>b</span><span>'</span><span>: </span><span>'</span><span>3</span><span>'</span><span>}
+&gt;&gt;&gt; </span><span>dict</span><span>[</span><span>'</span><span>b</span><span>'</span><span>]</span><span>
+</span><span>'</span><span>3</span><span>'</span><span>
+&gt;&gt;&gt; </span><span>dict</span><span>
+{</span><span>'</span><span>a</span><span>'</span><span>: </span><span>1</span><span>, </span><span>'</span><span>b</span><span>'</span><span>: </span><span>'</span><span>3</span><span>'</span><span>}</span></div></div></div><p>值可以取任何数据类型，但键必须是不可变的，如字符串，数字或元组。</p><p>一个简单的字典实例：</p><div><div><div><span>dict</span><span> = {</span><span>'</span><span>Alice</span><span>'</span><span>: </span><span>'</span><span>2341</span><span>'</span><span>, </span><span>'</span><span>Beth</span><span>'</span><span>: </span><span>'</span><span>9102</span><span>'</span><span>, </span><span>'</span><span>Cecil</span><span>'</span><span>: </span><span>'</span><span>3258</span><span>'</span><span>}</span></div></div></div><p>也可如此创建字典：</p><div><div><div><span>dict1</span><span> = { </span><span>'</span><span>abc</span><span>'</span><span>: </span><span>456</span><span> }
+</span><span>dict2</span><span> = { </span><span>'</span><span>abc</span><span>'</span><span>: </span><span>123</span><span>, </span><span>98.6</span><span>: </span><span>37</span><span> }</span></div></div></div><hr/><h2>访问字典里的值</h2><p>把相应的键放入熟悉的方括弧，如下实例:</p><div><h2>实例</h2><div><div><span>#!/usr/bin/python</span><span>
+ 
+</span><span>dict</span><span> = {</span><span>'</span><span>Name</span><span>'</span><span>: </span><span>'</span><span>Zara</span><span>'</span><span>, </span><span>'</span><span>Age</span><span>'</span><span>: </span><span>7</span><span>, </span><span>'</span><span>Class</span><span>'</span><span>: </span><span>'</span><span>First</span><span>'</span><span>}
+ 
+</span><span>print</span><span> </span><span>&quot;</span><span>dict['Name']: </span><span>&quot;</span><span>, </span><span>dict</span><span>[</span><span>'</span><span>Name</span><span>'</span><span>]</span><span>
+</span><span>print</span><span> </span><span>&quot;</span><span>dict['Age']: </span><span>&quot;</span><span>, </span><span>dict</span><span>[</span><span>'</span><span>Age</span><span>'</span><span>]</span></div></div></div><p>以上实例输出结果：</p><pre><span>dict</span><span>[</span><span>'Name'</span><span>]:</span><span>  </span><span>Zara</span><span>
+dict</span><span>[</span><span>'Age'</span><span>]:</span><span>  </span><span>7</span></pre><p>如果用字典里没有的键访问数据，会输出错误如下：</p><div><h2>实例</h2><div><div><span>#!/usr/bin/python</span><span>
+ 
+</span><span>dict</span><span> = {</span><span>'</span><span>Name</span><span>'</span><span>: </span><span>'</span><span>Zara</span><span>'</span><span>, </span><span>'</span><span>Age</span><span>'</span><span>: </span><span>7</span><span>, </span><span>'</span><span>Class</span><span>'</span><span>: </span><span>'</span><span>First</span><span>'</span><span>}
+ 
+</span><span>print</span><span> </span><span>&quot;</span><span>dict['Alice']: </span><span>&quot;</span><span>, </span><span>dict</span><span>[</span><span>'</span><span>Alice</span><span>'</span><span>]</span></div></div></div><p>以上实例输出结果：</p><pre><span>dict</span><span>[</span><span>'Alice'</span><span>]:</span><span> 
+</span><span>Traceback</span><span> </span><span>(</span><span>most recent call </span><span>last</span><span>):</span><span>
+  </span><span>File</span><span> </span><span>&quot;test.py&quot;</span><span>,</span><span> line </span><span>5</span><span>,</span><span> </span><span>in</span><span> </span><span>&lt;module&gt;</span><span>
+    </span><span>print</span><span> </span><span>&quot;dict['Alice']: &quot;</span><span>,</span><span> dict</span><span>[</span><span>'Alice'</span><span>]</span><span>
+</span><span>KeyError</span><span>:</span><span> </span><span>'Alice'</span></pre><br clear="none"/><hr/><h2>修改字典</h2><p>向字典添加新内容的方法是增加新的键/值对，修改或删除已有键/值对如下实例:</p><div><h2>实例</h2><div><div><span>#!/usr/bin/python</span><span>
+ 
+</span><span>dict</span><span> = {</span><span>'</span><span>Name</span><span>'</span><span>: </span><span>'</span><span>Zara</span><span>'</span><span>, </span><span>'</span><span>Age</span><span>'</span><span>: </span><span>7</span><span>, </span><span>'</span><span>Class</span><span>'</span><span>: </span><span>'</span><span>First</span><span>'</span><span>}
+ 
+</span><span>dict</span><span>[</span><span>'</span><span>Age</span><span>'</span><span>]</span><span> = </span><span>8</span><span> </span><span># 更新</span><span>
+</span><span>dict</span><span>[</span><span>'</span><span>School</span><span>'</span><span>]</span><span> = </span><span>&quot;</span><span>RUNOOB</span><span>&quot;</span><span> </span><span># 添加</span><span>
+ 
+ 
+</span><span>print</span><span> </span><span>&quot;</span><span>dict['Age']: </span><span>&quot;</span><span>, </span><span>dict</span><span>[</span><span>'</span><span>Age</span><span>'</span><span>]</span><span>
+</span><span>print</span><span> </span><span>&quot;</span><span>dict['School']: </span><span>&quot;</span><span>, </span><span>dict</span><span>[</span><span>'</span><span>School</span><span>'</span><span>]</span></div></div></div><span>以上实例输出结果：</span><pre><span>dict</span><span>[</span><span>'Age'</span><span>]:</span><span>  </span><span>8</span><span>
+dict</span><span>[</span><span>'School'</span><span>]:</span><span>  RUNOOB</span></pre><br clear="none"/><hr/><h2>删除字典元素</h2><p>能删单一的元素也能清空字典，清空只需一项操作。</p><p>显示删除一个字典用del命令，如下实例：</p><div><h2>实例</h2><div><div><span>#!/usr/bin/python</span><span>
+</span><span># -*- coding: UTF-8 -*-</span><span>
+ 
+</span><span>dict</span><span> = {</span><span>'</span><span>Name</span><span>'</span><span>: </span><span>'</span><span>Zara</span><span>'</span><span>, </span><span>'</span><span>Age</span><span>'</span><span>: </span><span>7</span><span>, </span><span>'</span><span>Class</span><span>'</span><span>: </span><span>'</span><span>First</span><span>'</span><span>}
+ 
+</span><span>del</span><span> </span><span>dict</span><span>[</span><span>'</span><span>Name</span><span>'</span><span>]</span><span>  </span><span># 删除键是'Name'的条目</span><span>
+</span><span>dict</span><span>.</span><span>clear</span><span>(</span><span>)</span><span>      </span><span># 清空词典所有条目</span><span>
+</span><span>del</span><span> </span><span>dict</span><span>          </span><span># 删除词典</span><span>
+ 
+</span><span>print</span><span> </span><span>&quot;</span><span>dict['Age']: </span><span>&quot;</span><span>, </span><span>dict</span><span>[</span><span>'</span><span>Age</span><span>'</span><span>]</span><span> 
+</span><span>print</span><span> </span><span>&quot;</span><span>dict['School']: </span><span>&quot;</span><span>, </span><span>dict</span><span>[</span><span>'</span><span>School</span><span>'</span><span>]</span></div></div></div><p>但这会引发一个异常，因为用del后字典不再存在：</p><pre><span>dict</span><span>[</span><span>'Age'</span><span>]:</span><span>
+</span><span>Traceback</span><span> </span><span>(</span><span>most recent call </span><span>last</span><span>):</span><span>
+  </span><span>File</span><span> </span><span>&quot;test.py&quot;</span><span>,</span><span> line </span><span>8</span><span>,</span><span> </span><span>in</span><span> </span><span>&lt;module&gt;</span><span>
+    </span><span>print</span><span> </span><span>&quot;dict['Age']: &quot;</span><span>,</span><span> dict</span><span>[</span><span>'Age'</span><span>]</span><span> 
+</span><span>TypeError</span><span>:</span><span> </span><span>'type'</span><span> </span><span>object</span><span> </span><span>is</span><span> unsubscriptable</span></pre><p><strong>注：</strong>del()方法后面也会讨论。</p><br clear="none"/><h3>字典键的特性</h3><p>字典值可以没有限制地取任何python对象，既可以是标准的对象，也可以是用户定义的，但键不行。</p><p>两个重要的点需要记住：</p><p></p><p>1）不允许同一个键出现两次。创建时如果同一个键被赋值两次，后一个值会被记住，如下实例：</p><p></p><div><h2>实例</h2><div><div><span>#!/usr/bin/python</span><span>
+ 
+</span><span>dict</span><span> = {</span><span>'</span><span>Name</span><span>'</span><span>: </span><span>'</span><span>Zara</span><span>'</span><span>, </span><span>'</span><span>Age</span><span>'</span><span>: </span><span>7</span><span>, </span><span>'</span><span>Name</span><span>'</span><span>: </span><span>'</span><span>Manni</span><span>'</span><span>} 
+ 
+</span><span>print</span><span> </span><span>&quot;</span><span>dict['Name']: </span><span>&quot;</span><span>, </span><span>dict</span><span>[</span><span>'</span><span>Name</span><span>'</span><span>]</span></div></div></div><p>以上实例输出结果：</p><pre><span>dict</span><span>[</span><span>'Name'</span><span>]:</span><span>  </span><span>Manni</span></pre><p>2）键必须不可变，所以可以用数字，字符串或元组充当，所以用列表就不行，如下实例：</p><div><h2>实例</h2><div><div><span>#!/usr/bin/python</span><span>
+ 
+</span><span>dict</span><span> = {</span><span>[</span><span>'</span><span>Name</span><span>'</span><span>]</span><span>: </span><span>'</span><span>Zara</span><span>'</span><span>, </span><span>'</span><span>Age</span><span>'</span><span>: </span><span>7</span><span>} 
+ 
+</span><span>print</span><span> </span><span>&quot;</span><span>dict['Name']: </span><span>&quot;</span><span>, </span><span>dict</span><span>[</span><span>'</span><span>Name</span><span>'</span><span>]</span></div></div></div><p>以上实例输出结果：</p><pre><span>Traceback</span><span> </span><span>(</span><span>most recent call </span><span>last</span><span>):</span><span>
+  </span><span>File</span><span> </span><span>&quot;test.py&quot;</span><span>,</span><span> line </span><span>3</span><span>,</span><span> </span><span>in</span><span> </span><span>&lt;module&gt;</span><span>
+    dict </span><span>=</span><span> </span><span>{[</span><span>'Name'</span><span>]:</span><span> </span><span>'Zara'</span><span>,</span><span> </span><span>'Age'</span><span>:</span><span> </span><span>7</span><span>}</span><span> 
+</span><span>TypeError</span><span>:</span><span> list objects are unhashable</span></pre><br clear="none"/><hr/><h2>字典内置函数&amp;方法</h2><p>Python字典包含了以下内置函数：</p><table><tr><th colspan="1" rowspan="1">序号</th><th colspan="1" rowspan="1">函数及描述</th></tr><tr><td colspan="1" rowspan="1">1</td><td colspan="1" rowspan="1"><a href="http://www.runoob.com/python/att-dictionary-cmp.html" shape="rect" target="_blank">cmp(dict1, dict2)</a><br clear="none"/>比较两个字典元素。</td></tr><tr><td colspan="1" rowspan="1">2</td><td colspan="1" rowspan="1"><a href="http://www.runoob.com/python/att-dictionary-len.html" shape="rect" target="_blank">len(dict)</a><br clear="none"/>计算字典元素个数，即键的总数。</td></tr><tr><td colspan="1" rowspan="1">3</td><td colspan="1" rowspan="1"><a href="http://www.runoob.com/python/att-dictionary-str.html" shape="rect" target="_blank">str(dict)</a><br clear="none"/>输出字典可打印的字符串表示。</td></tr><tr><td colspan="1" rowspan="1">4</td><td colspan="1" rowspan="1"><a href="http://www.runoob.com/python/att-dictionary-type.html" shape="rect" target="_blank">type(variable)</a><br clear="none"/>返回输入的变量类型，如果变量是字典就返回字典类型。</td></tr></table><p>Python字典包含了以下内置方法：</p><table><tr><th colspan="1" rowspan="1">序号</th><th colspan="1" rowspan="1">函数及描述</th></tr><tr><td colspan="1" rowspan="1">1</td><td colspan="1" rowspan="1"><a href="http://www.runoob.com/python/att-dictionary-clear.html" shape="rect" target="_blank">dict.clear()</a><br clear="none"/>删除字典内所有元素</td></tr><tr><td colspan="1" rowspan="1">2</td><td colspan="1" rowspan="1"><a href="http://www.runoob.com/python/att-dictionary-copy.html" shape="rect" target="_blank">dict.copy()</a><br clear="none"/>返回一个字典的浅复制</td></tr><tr><td colspan="1" rowspan="1">3</td><td colspan="1" rowspan="1"><a href="http://www.runoob.com/python/att-dictionary-fromkeys.html" shape="rect" target="_blank">dict.fromkeys(seq[, val])</a><br clear="none"/>创建一个新字典，以序列 seq 中元素做字典的键，val 为字典所有键对应的初始值</td></tr><tr><td colspan="1" rowspan="1">4</td><td colspan="1" rowspan="1"><a href="http://www.runoob.com/python/att-dictionary-get.html" shape="rect" target="_blank">dict.get(key, default=None)</a><br clear="none"/>返回指定键的值，如果值不在字典中返回default值</td></tr><tr><td colspan="1" rowspan="1">5</td><td colspan="1" rowspan="1"><a href="http://www.runoob.com/python/att-dictionary-has_key.html" shape="rect" target="_blank">dict.has_key(key)</a><br clear="none"/>如果键在字典dict里返回true，否则返回false</td></tr><tr><td colspan="1" rowspan="1">6</td><td colspan="1" rowspan="1"><a href="http://www.runoob.com/python/att-dictionary-items.html" shape="rect" target="_blank">dict.items()</a><br clear="none"/>以列表返回可遍历的(键, 值) 元组数组</td></tr><tr><td colspan="1" rowspan="1">7</td><td colspan="1" rowspan="1"><a href="http://www.runoob.com/python/att-dictionary-keys.html" shape="rect" target="_blank">dict.keys()</a><br clear="none"/>以列表返回一个字典所有的键</td></tr><tr><td colspan="1" rowspan="1">8</td><td colspan="1" rowspan="1"><a href="http://www.runoob.com/python/att-dictionary-setdefault.html" shape="rect" target="_blank">dict.setdefault(key, default=None)</a><br clear="none"/>和get()类似, 但如果键不存在于字典中，将会添加键并将值设为default</td></tr><tr><td colspan="1" rowspan="1">9</td><td colspan="1" rowspan="1"><a href="http://www.runoob.com/python/att-dictionary-update.html" shape="rect" target="_blank">dict.update(dict2)</a><br clear="none"/>把字典dict2的键/值对更新到dict里</td></tr><tr><td colspan="1" rowspan="1">10</td><td colspan="1" rowspan="1"><a href="http://www.runoob.com/python/att-dictionary-values.html" shape="rect" target="_blank">dict.values()</a><br clear="none"/>以列表返回字典中的所有值</td></tr><tr><td colspan="1" rowspan="1">11</td><td colspan="1" rowspan="1"><a href="http://www.runoob.com/python/python-att-dictionary-pop.html" shape="rect" target="_blank">pop(key[,default])</a><br clear="none"/>删除字典给定键 key 所对应的值，返回值为被删除的值。key值必须给出。 否则，返回default值。</td></tr><tr><td colspan="1" rowspan="1">12</td><td colspan="1" rowspan="1"><a href="http://www.runoob.com/python/python-att-dictionary-popitem.html" shape="rect" target="_blank">popitem()</a><br clear="none"/>随机返回并删除字典中的一对键和值。</td></tr></table><br clear="none"/></div></span>
+</div></body></html> 
